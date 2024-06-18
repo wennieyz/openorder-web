@@ -160,10 +160,9 @@ const theme = createTheme({
       20: baseColors["gray-20"],
       10: baseColors["gray-10"],
     },
-
   },
   typography: {
-    fontFamily: "Roboto, sans-serif",
+    fontFamily: "'Roboto', sans-serif",
     h1: {
       fontSize: "2rem",
       fontWeight: "bold",
@@ -220,30 +219,42 @@ const theme = createTheme({
     MuiBadge: {
       styleOverrides: {
         root: ({ ownerState }) => ({
-          ...(ownerState.color === "purple" ? {
-            color: theme.palette.purple[90],
-            background: theme.palette.purple[10],
-          } : ownerState.color === "green" ? {
-            color: theme.palette.green[90],
-            background: theme.palette.green[10],
-        } : ownerState.color === "red" ? {
-          color: theme.palette.red[90],
-          background: theme.palette.red[10],
-        } : ownerState.color === "blue" ? {
-          color: theme.palette.blue[90],
-          background: theme.palette.blue[10],
-        } : ownerState.color === "yellow" ? {
-          color: theme.palette.yellow[90],
-          background: theme.palette.yellow[10],
-        } : ownerState.color === "white" ? {
-          color: theme.palette.gray[80],
-          background: theme.palette.white.main,
-          outline: `1px solid ${theme.palette.gray[30]}`
-        } : {
-          // default is gray
-          color: theme.palette.gray[80],
-          background: theme.palette.blue[20],
-        }),
+          ...(ownerState.color === "purple"
+            ? {
+                color: theme.palette.purple[90],
+                background: theme.palette.purple[10],
+              }
+            : ownerState.color === "green"
+              ? {
+                  color: theme.palette.green[90],
+                  background: theme.palette.green[10],
+                }
+              : ownerState.color === "red"
+                ? {
+                    color: theme.palette.red[90],
+                    background: theme.palette.red[10],
+                  }
+                : ownerState.color === "blue"
+                  ? {
+                      color: theme.palette.blue[90],
+                      background: theme.palette.blue[10],
+                    }
+                  : ownerState.color === "yellow"
+                    ? {
+                        color: theme.palette.yellow[90],
+                        background: theme.palette.yellow[10],
+                      }
+                    : ownerState.color === "white"
+                      ? {
+                          color: theme.palette.gray[80],
+                          background: theme.palette.white.main,
+                          outline: `1px solid ${theme.palette.gray[30]}`,
+                        }
+                      : {
+                          // default is gray
+                          color: theme.palette.gray[80],
+                          background: theme.palette.blue[20],
+                        }),
           fontFamily: "Roboto, sans-serif",
           textTransform: "uppercase",
           borderRadius: "8px",
@@ -303,6 +314,43 @@ const theme = createTheme({
           borderRadius: "30px",
         }),
       },
+    },
+    MuiChip: {
+      defaultProps: {
+        variant: "outlined",
+      },
+      styleOverrides: {
+        root: ({ ownerState }) => ({
+          ...(ownerState.color === "secondary"
+            ? {
+                border: `2px solid ${theme.palette.blue[80]}`,
+                background: theme.palette.blue[10],
+                color: theme.palette.blue[80],
+              }
+            : {
+                border: `1px solid ${theme.palette.blue[30]}`,
+                background: theme.palette.blue[10],
+                color: theme.palette.gray[70]
+              }),
+          fontSize: "14px",
+          fontWeight: 500,
+        }),
+      },
+    },
+    MuiIconButton: {
+      defaultProps: {
+        color: "primary",
+      },
+    },
+    MuiSelect: {
+      styleOverrides: {
+        // root: ({ ownerState }) => ({
+        //   ...(ownerState.variant === "primary" ? :{},),
+        // }),
+        // root: {
+        //   borderRadius: "100px",
+        // }
+      }
     },
   },
 });

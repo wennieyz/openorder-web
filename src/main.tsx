@@ -5,6 +5,9 @@ import './index.css'
 import Button from '@mui/material/Button'
 import { StyledEngineProvider, ThemeProvider } from '@mui/material/styles';
 import theme from './theme.ts'
+import { IconButton } from '@mui/material'
+import CheckIcon from '@mui/icons-material/Check';
+import DSDropdown from './stories/DSDropdown.tsx'
 
 
 
@@ -14,6 +17,8 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       <ThemeProvider theme={theme}>
         <App />
         <Button color='primary'>Button</Button>
+        <IconButton><CheckIcon/></IconButton>
+        <DSDropdown/>
       </ThemeProvider>
     </StyledEngineProvider>
   </React.StrictMode>,
