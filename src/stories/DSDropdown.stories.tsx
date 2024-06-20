@@ -64,32 +64,28 @@ Error.args = {
   title: 'Ages'
 }
 
-const Disabled: Story = {
-  args: {
-    error: false,
-    disabled: true,
-    options,
-    title: 'Ages'
-  },
+const Disabled = Template.bind({})
+Disabled.args = {
+  error: false,
+  disabled: true,
+  options,
+  title: "Ages",
+};
+
+const WithHelperText = Template.bind({})
+WithHelperText.args = {
+  error: false,
+  value: 'Less than 24',
+  helperText: 'Minimum',
+  title: 'Minimum',
+  options: [
+    { value: "Less than 24", label: "Less than 24" },
+    { value: "24-30", label: "24-30" },
+    { value: "30-40", label: "30-40" },
+    { value: "40-50", label: "40-50" },
+    { value: 'More than 50', label: 'More than 50' }
+  ]
 }
-
-const WithHelperText: Story = {
-  args: {
-    error: false,
-    value: 'Less than 24',
-    helperText: 'Minimum',
-    title: 'Minimum',
-    options: [
-      { value: "Less than 24", label: "Less than 24" },
-      { value: "24-30", label: "24-30" },
-      { value: "30-40", label: "30-40" },
-      { value: "40-50", label: "40-50" },
-      { value: 'More than 50', label: 'More than 50' }
-
-    ]
-  },
-}
-
 
 export {
   Default,
