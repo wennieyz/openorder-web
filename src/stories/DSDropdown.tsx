@@ -1,32 +1,153 @@
 import {
   FormControl,
   FormHelperText,
-  InputLabel,
   MenuItem,
+  MenuItemProps,
   Select,
+  SelectChangeEvent,
+  styled,
 } from "@mui/material";
-import styles from './styles.module.css'
+import { baseColors } from "../styleVariables";
+import React from "react";
 
-const DSDropdown = () => {
+const StyledMenuItem = styled(MenuItem)<MenuItemProps>(({ theme }) => ({
+  fontSize: '13px',
+  color: theme.palette.primary.main,
+  minHeight: 'initial'
+}));
+
+
+type TDSDropdownOption = {
+  disabled?: boolean
+  label: string | React.ReactNode
+  value: string
+}
+
+type TDSDropdownProps = {
+  /**
+   * If true, the dropdown will be disabled
+   */
+  disabled?: boolean
+
+  /**
+   * If true, the dropdown will display an error state
+   */
+  error?: boolean
+  /**
+   * The error message to display
+   */
+  errorMessage?: string
+  /**
+   * Helper text label to display above the dropdown
+   */
+  helperText?: string
+  /**
+   * function for performing an action when an option is selected
+   * @param item value of options prop that was selected
+   */
+  onChange: (value: string) => void
+  /**
+   * Array of dropdown options
+   */
+  options: TDSDropdownOption[]
+  /**
+   * The title of the dropdown
+   */
+  title: string
+  /**
+   * The value of the selected dropdown item
+   * @default ''
+   */
+  value?: string
+}
+
+const DSDropdown =({
+  disabled,
+  error,
+  errorMessage,
+  helperText,
+  onChange,
+  options,
+  title,
+  value = '',
+}: TDSDropdownProps) => {
+  const optionValueToLabel: Record<string, string | React.ReactNode> =
+    options.reduce((acc, option) => {
+      acc[option.value] = option.label;
+      return acc;
+    }, {} as Record<string, string | React.ReactNode>)
+    // todo: figure out sth out casting ts error
+
   return (
     <>
-      <FormControl sx={{ m: 1, minWidth: 120 }} error>
-      <FormHelperText>Without label</FormHelperText>
-
-        <Select className={styles.select}
-          value={10}
-          // onChange={handleChange}
+      <FormControl size="small" error={error} disabled={disabled}>
+        {helperText && (
+          <FormHelperText
+            sx={{
+              color: "primary.main",
+              marginLeft: "0",
+              fontSize: "14px",
+            }}
+          >
+            {helperText}
+          </FormHelperText>
+        )}
+        <Select
+          value={value}
+          sx={{
+            ...(!error
+              ? {
+                  background: `${baseColors["blue-10"]}`,
+                  boxShadow: "none",
+                  ".MuiOutlinedInput-notchedOutline": { border: 0 },
+                  "&.MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline":
+                    {
+                      border: `2px solid ${baseColors["blue-80"]}`,
+                    },
+                  "&.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline":
+                    {
+                      border: `2px solid ${baseColors["blue-80"]}`,
+                      boxShadow: `0px 0px 8px 0px ${baseColors["blue-80"]}`,
+                    },
+                }
+              : {
+                  "&.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline":
+                    {
+                      border: "2px solid error.main",
+                    },
+                }),
+            ...(value
+              ? { color: "primary.main" }
+              : { color: `${baseColors["gray-50"]}` }),
+            fontSize: "13px",
+            height: "40px",
+          }}
+          onChange={(event: SelectChangeEvent) => onChange(event.target.value)}
           displayEmpty
           inputProps={{ "aria-label": "Without label" }}
+          renderValue={(value) =>
+            value === "" ? title : optionValueToLabel[value]
+          }
+          MenuProps={{
+            anchorOrigin: {
+              vertical: "bottom",
+              horizontal: "left"
+            },
+            transformOrigin: {
+              vertical: "top",
+              horizontal: "left"
+            }
+          }}
         >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
+          {options.map((option) => (
+            <StyledMenuItem value={option.value} disabled={option.disabled}>
+              {option.label}
+            </StyledMenuItem>
+          ))}
         </Select>
-        <FormHelperText>Without label</FormHelperText>
+        <FormHelperText sx={{ marginLeft: "0", fontSize: "14px" }}>
+          {errorMessage}
+        </FormHelperText>
       </FormControl>
     </>
   );

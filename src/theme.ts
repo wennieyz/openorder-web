@@ -74,7 +74,7 @@ declare module '@mui/material/Badge' {
 const theme = createTheme({
   palette: {
     primary: {
-      main: baseColors["gray-90"],
+      main: baseColors["gray-80"],
     },
     secondary: {
       main: baseColors["gray-60"],
@@ -330,7 +330,7 @@ const theme = createTheme({
             : {
                 border: `1px solid ${theme.palette.blue[30]}`,
                 background: theme.palette.blue[10],
-                color: theme.palette.gray[70]
+                color: theme.palette.gray[70],
               }),
           fontSize: "14px",
           fontWeight: 500,
@@ -342,15 +342,29 @@ const theme = createTheme({
         color: "primary",
       },
     },
+    MuiMenuItem: {
+      defaultProps: {
+        color: "primary",
+      },
+    },
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          backgroundColor: baseColors["white"],
+          borderRadius: "8px",
+          boxShadow: "0px 0px 8px 0px rgba(0, 0, 0, 0.20)",
+        },
+      },
+    },
     MuiSelect: {
       styleOverrides: {
         // root: ({ ownerState }) => ({
         //   ...(ownerState.variant === "primary" ? :{},),
         // }),
-        // root: {
-        //   borderRadius: "100px",
-        // }
-      }
+        root: {
+          borderRadius: "100px",
+        },
+      },
     },
   },
 });

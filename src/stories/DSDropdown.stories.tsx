@@ -1,7 +1,9 @@
 
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryFn, StoryObj, } from '@storybook/react';
 import { fn } from '@storybook/test';
 import DSDropdown from './DSDropdown';
+import CheckIcon from '@mui/icons-material/Check';
+import React from 'react';
 
 
 const meta = {
@@ -13,28 +15,85 @@ const meta = {
   },
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ['autodocs'],
-  args: { onClick: fn() },
+  args: { onChange: fn() },
 } satisfies Meta<typeof DSDropdown>
 
 export default meta
 type Story = StoryObj<typeof meta>
 
+type PropsType = React.ComponentProps<typeof DSDropdown>
+
+const Template: StoryFn<PropsType> = (props: PropsType) => {    
+  const [localValue, setValue] = React.useState<string>('');
+  const onChangeInput = (inputValue: string) => {
+      setValue(inputValue);
+  }
+  return (
+      <DSDropdown {...props} value={localValue} onChange={onChangeInput} />
+  )
+}
+
+const options = [
+  { value: "1", label: "Option 1" },
+  { value: "2", label: "Option 2" },
+  { value: "3", label: "Option 3" },
+  {
+    value: "4",
+    label: (
+      <div style={{display: 'flex', alignItems: 'center', gap: '6px'}}>
+        <CheckIcon />
+        Option 4
+      </div>
+    ),
+  },
+];
+
 //👇 Throws a type error it the args don't match the component props
-const Primary: Story = {
+const Default = Template.bind({})
+Default.args = {
+    error: false,
+    options,
+    title: 'Ages'
+}
+
+const Error = Template.bind({})
+Error.args = {
+  error: true,
+  errorMessage: "This is an error message",
+  options,
+  title: 'Ages'
+}
+
+const Disabled: Story = {
   args: {
-    label: 'Text',
+    error: false,
+    disabled: true,
+    options,
+    title: 'Ages'
   },
 }
 
-const Secondary: Story = {
+const WithHelperText: Story = {
   args: {
-    label: 'Text',
-    color: 'secondary'
+    error: false,
+    value: 'Less than 24',
+    helperText: 'Minimum',
+    title: 'Minimum',
+    options: [
+      { value: "Less than 24", label: "Less than 24" },
+      { value: "24-30", label: "24-30" },
+      { value: "30-40", label: "30-40" },
+      { value: "40-50", label: "40-50" },
+      { value: 'More than 50', label: 'More than 50' }
+
+    ]
   },
 }
 
 
 export {
-  Primary,
-  Secondary,
+  Default,
+  Error,
+  Disabled,
+  WithHelperText,
 }
