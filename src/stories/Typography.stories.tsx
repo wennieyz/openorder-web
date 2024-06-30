@@ -1,8 +1,8 @@
-import { Typography, TypographyProps } from '@mui/material';
-import { Meta, StoryObj } from '@storybook/react';
+import { Typography, TypographyProps } from '@mui/material'
+import { Meta, StoryObj } from '@storybook/react'
 
 const meta = {
-  title: 'Foundation/Typography', //👈 The title you'll see in the story's sidebar in Storybook
+  title: 'Foundation/Typography', // 👈 The title you'll see in the story's sidebar in Storybook
   component: Typography,
   parameters: {
     layout: 'left',

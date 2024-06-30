@@ -1,13 +1,13 @@
 
-import { Meta, StoryFn, StoryObj, } from '@storybook/react';
-import { fn } from '@storybook/test';
-import DSDropdown from './DSDropdown';
-import CheckIcon from '@mui/icons-material/Check';
-import React from 'react';
+import CheckIcon from '@mui/icons-material/Check'
+import { Meta, StoryFn, } from '@storybook/react'
+import { fn } from '@storybook/test'
+import React from 'react'
+import DSDropdown from './DSDropdown'
 
 
 const meta = {
-  title: 'Design System/Dropdown', //👈 The title you'll see in the story's sidebar in Storybook
+  title: 'Design System/Dropdown', // 👈 The title you'll see in the story's sidebar in Storybook
   component: DSDropdown,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout
@@ -19,14 +19,13 @@ const meta = {
 } satisfies Meta<typeof DSDropdown>
 
 export default meta
-type Story = StoryObj<typeof meta>
 
 type PropsType = React.ComponentProps<typeof DSDropdown>
 
 const Template: StoryFn<PropsType> = (props: PropsType) => {    
-  const [localValue, setValue] = React.useState<string>('');
+  const [localValue, setValue] = React.useState<string>('')
   const onChangeInput = (inputValue: string) => {
-      setValue(inputValue);
+      setValue(inputValue)
   }
   return (
       <DSDropdown {...props} value={localValue} onChange={onChangeInput} />
@@ -46,9 +45,9 @@ const options = [
       </div>
     ),
   },
-];
+]
 
-//👇 Throws a type error it the args don't match the component props
+// 👇 Throws a type error it the args don't match the component props
 const Default = Template.bind({})
 Default.args = {
     error: false,
@@ -70,7 +69,7 @@ Disabled.args = {
   disabled: true,
   options,
   title: "Ages",
-};
+}
 
 const WithHelperText = Template.bind({})
 WithHelperText.args = {

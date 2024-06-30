@@ -1,6 +1,5 @@
-import type { Preview, StoryContext, StoryFn, StoryObj } from "@storybook/react";
-import { StyledEngineProvider, ThemeProvider } from '@mui/material/styles';
-import React from "react";
+import { StyledEngineProvider, ThemeProvider } from '@mui/material/styles'
+import type { Preview } from "@storybook/react"
 import theme from '../src/theme.ts'
 
 
@@ -20,7 +19,7 @@ const preview: Preview = {
       </StyledEngineProvider>
     ),
   ],
-};
+}
 
 
-export default preview;
+export default preview

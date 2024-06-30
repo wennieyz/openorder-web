@@ -1,6 +1,6 @@
 
-import { PaletteColor, PaletteColorOptions, createTheme } from '@mui/material';
-import { baseColors } from './styleVariables';
+import { createTheme, PaletteColor, PaletteColorOptions } from '@mui/material'
+import { baseColors } from './styleVariables'
 
 declare module '@mui/material/styles' {
   interface Palette {
@@ -25,16 +25,16 @@ declare module '@mui/material/styles' {
   }
 
   interface SimplePaletteColorOptions {
-    100?: string,
-    90?: string,
-    80?: string,
-    70?: string,
-    60?: string,
-    50?: string,
-    40?: string,
-    30?: string,
-    20?: string,
-    10?: string,
+    100?: string
+    90?: string
+    80?: string
+    70?: string
+    60?: string
+    50?: string
+    40?: string
+    30?: string
+    20?: string
+    10?: string
   }
 
   interface TypographyVariants {
@@ -68,7 +68,6 @@ declare module '@mui/material/Badge' {
     gray: true
   }
 }
-
 
 
 const theme = createTheme({
@@ -216,7 +215,9 @@ const theme = createTheme({
         },
       },
     },
-    MuiBadge: {
+    MuiBadge: { 
+      // TODO: wennie maybe move this to the actual component later?
+      // will need to figure out organization
       styleOverrides: {
         root: ({ ownerState }) => ({
           ...(ownerState.color === "purple"
@@ -367,6 +368,6 @@ const theme = createTheme({
       },
     },
   },
-});
+})
 
 export default theme

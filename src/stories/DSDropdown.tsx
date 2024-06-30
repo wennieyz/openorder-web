@@ -6,15 +6,15 @@ import {
   Select,
   SelectChangeEvent,
   styled,
-} from "@mui/material";
-import { baseColors } from "../styleVariables";
-import React from "react";
+} from "@mui/material"
+import React from "react"
+import { baseColors } from "../styleVariables"
 
 const StyledMenuItem = styled(MenuItem)<MenuItemProps>(({ theme }) => ({
   fontSize: '13px',
   color: theme.palette.primary.main,
-  minHeight: 'initial'
-}));
+  minHeight: 'initial',
+}))
 
 
 type TDSDropdownOption = {
@@ -73,8 +73,8 @@ const DSDropdown =({
 }: TDSDropdownProps) => {
   const optionValueToLabel: Record<string, string | React.ReactNode> =
     options.reduce((acc, option) => {
-      acc[option.value] = option.label;
-      return acc;
+      acc[option.value] = option.label
+      return acc
     }, {} as Record<string, string | React.ReactNode>)
     // todo: figure out sth out casting ts error
 
@@ -125,8 +125,8 @@ const DSDropdown =({
           onChange={(event: SelectChangeEvent) => onChange(event.target.value)}
           displayEmpty
           inputProps={{ "aria-label": "Without label" }}
-          renderValue={(value) =>
-            value === "" ? title : optionValueToLabel[value]
+          renderValue={v =>
+            v === "" ? title : optionValueToLabel[v]
           }
           MenuProps={{
             anchorOrigin: {
@@ -140,7 +140,7 @@ const DSDropdown =({
           }}
         >
           {options.map((option) => (
-            <StyledMenuItem value={option.value} disabled={option.disabled}>
+            <StyledMenuItem key={option.value} value={option.value} disabled={option.disabled}>
               {option.label}
             </StyledMenuItem>
           ))}
@@ -150,7 +150,7 @@ const DSDropdown =({
         </FormHelperText>
       </FormControl>
     </>
-  );
-};
+  )
+}
 
-export default DSDropdown;
+export default DSDropdown
