@@ -1,6 +1,6 @@
 
 import CheckIcon from '@mui/icons-material/Check'
-import { Button  } from '@mui/material'
+import { Button } from '@mui/material'
 import { Meta, StoryObj } from '@storybook/react'
 import { fn } from '@storybook/test'
 
@@ -25,7 +25,6 @@ const Primary: Story = {
   args: {
     children: 'Button',
   },
-
 }
 
 const Secondary: Story = {
@@ -51,8 +50,5 @@ const SecondaryWithIcon: Story = {
 }
 
 export {
-  Primary,
-  Secondary,
-  PrimaryWithIcon,
-  SecondaryWithIcon,
+  Primary, PrimaryWithIcon, Secondary, SecondaryWithIcon
 }

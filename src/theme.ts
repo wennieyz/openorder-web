@@ -13,6 +13,7 @@ declare module '@mui/material/styles' {
     white: PaletteColor
     black: PaletteColor
   }
+
   interface PaletteOptions {
     purple?: PaletteColorOptions
     green?: PaletteColorOptions
@@ -364,6 +365,14 @@ const theme = createTheme({
         // }),
         root: {
           borderRadius: "100px",
+        },
+      },
+    },
+    MuiSvgIcon: {
+      styleOverrides: {
+        root: {
+          stroke: baseColors['gray-70'],
+          strokeWidth: 1,
         },
       },
     },

@@ -1,7 +1,7 @@
 
 import { CheckCircleOutline } from '@mui/icons-material'
 import { Meta, StoryObj } from '@storybook/react'
-import DSBadge from './DSBadge'
+import DSBadge from '.'
 
 const meta = {
   title: 'Design System/Badge', // 👈 The title you'll see in the story's sidebar in Storybook
@@ -79,12 +79,6 @@ const WithIcon: Story = {
 
 
 export {
-  Gray,
-  Blue,
-  Red,
-  Green,
-  Yellow,
-  Purple,
-  White,
-  WithIcon,
+  Blue, Gray, Green, Purple, Red, White,
+  WithIcon, Yellow
 }

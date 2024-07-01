@@ -3,7 +3,7 @@ import CheckIcon from '@mui/icons-material/Check'
 import { Meta, StoryFn, } from '@storybook/react'
 import { fn } from '@storybook/test'
 import React from 'react'
-import DSDropdown from './DSDropdown'
+import DSDropdown from '.'
 
 
 const meta = {
@@ -87,8 +87,5 @@ WithHelperText.args = {
 }
 
 export {
-  Default,
-  Error,
-  Disabled,
-  WithHelperText,
+  Default, Disabled, Error, WithHelperText
 }

@@ -8,7 +8,7 @@ import {
   styled,
 } from "@mui/material"
 import React from "react"
-import { baseColors } from "../styleVariables"
+import { baseColors } from "../../../styleVariables"
 
 const StyledMenuItem = styled(MenuItem)<MenuItemProps>(({ theme }) => ({
   fontSize: '13px',

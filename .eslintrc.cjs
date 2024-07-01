@@ -66,6 +66,7 @@ const eslintConfig = {
   ],
   ignorePatterns: ['cms', 'src/__generated__', '!.storybook'],
   rules: {
+    'quotes': 'single',
     'no-restricted-properties': [
       'warn',
       {
@@ -413,6 +414,7 @@ if (process.env.CIRCLECI || process.env.USE_ALL_LINT_RULES || USE_ALL_LINT_RULES
       // NB: don't specify `src` so that the entire repo is scanned
       // but exclude the places we don't care if they export things that never get imported
       ignoreExports: [
+        '.eslintrc.cjs',
         'webpack.config.ts',
         '.storybook/**/*.ts?(x)',
         '**/*.js',
