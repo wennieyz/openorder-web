@@ -1,14 +1,23 @@
 import { SvgIcon } from "@mui/material"
-import allIcons, { IconName } from "./allIcons"
+import icon, { IconName, TIconStyleProps } from "./allIcons"
+import { baseColors } from "../../../styleVariables"
 
 type TDSIconProps = {
   name: IconName
+  color: 'primary' | 'secondary'
+  iconStyleProps?: TIconStyleProps
 }
 
-const DSIcon = ({name}: TDSIconProps) => {
+const DSIcon = ({color, name, iconStyleProps}: TDSIconProps) => {
+  const iconProps = {
+    // stroke color needs to be defined here to override svg line color
+    ...(color === 'primary' && {stroke: `${baseColors['--white']}`}),
+    ...iconStyleProps,
+  }
   return (
-    <SvgIcon // TODO: wennie start here add svg icon color props
-    >{allIcons[name]}</SvgIcon>
+    <SvgIcon color={color}>
+      {icon(name, iconProps)}
+    </SvgIcon>
   )
 }
 

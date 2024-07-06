@@ -84,9 +84,9 @@ const DSDropdown =({
         {helperText && (
           <FormHelperText
             sx={{
-              color: "primary.main",
-              marginLeft: "0",
-              fontSize: "14px",
+              color: 'primary.main',
+              marginLeft: '0',
+              fontSize: '14px',
             }}
           >
             {helperText}
@@ -97,55 +97,56 @@ const DSDropdown =({
           sx={{
             ...(!error
               ? {
-                  background: `${baseColors["blue-10"]}`,
-                  boxShadow: "none",
-                  ".MuiOutlinedInput-notchedOutline": { border: 0 },
-                  "&.MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline":
+                  'background': `${baseColors['--blue-10']}`,
+                  'boxShadow': 'none',
+                  '.MuiOutlinedInput-notchedOutline': {border: 0},
+                  '&.MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
+                    border: `2px solid ${baseColors['--blue-80']}`,
+                  },
+                  '&.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline':
                     {
-                      border: `2px solid ${baseColors["blue-80"]}`,
-                    },
-                  "&.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline":
-                    {
-                      border: `2px solid ${baseColors["blue-80"]}`,
-                      boxShadow: `0px 0px 8px 0px ${baseColors["blue-80"]}`,
+                      border: `2px solid ${baseColors['--blue-80']}`,
+                      boxShadow: `0px 0px 8px 0px ${baseColors['--blue-80']}`,
                     },
                 }
               : {
-                  "&.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline":
+                  '&.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline':
                     {
-                      border: "2px solid error.main",
+                      border: '2px solid error.main',
                     },
                 }),
             ...(value
-              ? { color: "primary.main" }
-              : { color: `${baseColors["gray-50"]}` }),
-            fontSize: "13px",
-            height: "40px",
+              ? {color: 'primary.main'}
+              : {color: `${baseColors['--gray-50']}`}),
+            fontSize: '13px',
+            height: '40px',
           }}
           onChange={(event: SelectChangeEvent) => onChange(event.target.value)}
           displayEmpty
-          inputProps={{ "aria-label": "Without label" }}
-          renderValue={v =>
-            v === "" ? title : optionValueToLabel[v]
-          }
+          inputProps={{'aria-label': 'Without label'}}
+          renderValue={v => (v === '' ? title : optionValueToLabel[v])}
           MenuProps={{
             anchorOrigin: {
-              vertical: "bottom",
-              horizontal: "left"
+              vertical: 'bottom',
+              horizontal: 'left',
             },
             transformOrigin: {
-              vertical: "top",
-              horizontal: "left"
-            }
+              vertical: 'top',
+              horizontal: 'left',
+            },
           }}
         >
-          {options.map((option) => (
-            <StyledMenuItem key={option.value} value={option.value} disabled={option.disabled}>
+          {options.map(option => (
+            <StyledMenuItem
+              key={option.value}
+              value={option.value}
+              disabled={option.disabled}
+            >
               {option.label}
             </StyledMenuItem>
           ))}
         </Select>
-        <FormHelperText sx={{ marginLeft: "0", fontSize: "14px" }}>
+        <FormHelperText sx={{marginLeft: '0', fontSize: '14px'}}>
           {errorMessage}
         </FormHelperText>
       </FormControl>

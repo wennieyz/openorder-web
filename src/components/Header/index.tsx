@@ -1,27 +1,31 @@
-import { IconButton } from '@mui/material'
-import { baseColors } from '../../styleVariables'
 import Tabs from '../Tabs'
-import DSIcon from '../design-system/icons/DSIcon'
 import styles from './styles.module.css'
+import DSIconButton from '../design-system/DSIconButton'
+import { Button } from '@mui/material'
+import DSIcon from '../design-system/icons/DSIcon'
+import classNames from 'classnames'
 
-const Header = () => {
+type THeaderProps = {
+  numItemsInBag?: number
+}
+
+const Header = ({numItemsInBag}: THeaderProps) => {
   return (
     <div className={styles.header}>
-      <IconButton
-        sx={{
-          backgroundColor: `${baseColors['gray-90']}`,
-        }}
-      >
-        <DSIcon name="Home" />
-      </IconButton>
+      <DSIconButton icon="Home" variant="primary" />
       <Tabs onChange={() => {}} />
-      <div>
-        <IconButton>
-          <DSIcon name="MagnifyingGlass" />
-        </IconButton>
-        <IconButton>
-          <DSIcon name="ShoppingBag" />
-        </IconButton>
+      <div className={classNames(styles.endSection, numItemsInBag && styles.endSectionWithItems)}>
+        <DSIconButton icon="MagnifyingGlass" variant="secondary" />
+        {!numItemsInBag ? (
+          <DSIconButton icon="ShoppingBag" variant="secondary" />
+        ) : (
+          <Button
+            startIcon={<DSIcon name="ShoppingBag" color="primary" />}
+            color="primary"
+          >
+            {numItemsInBag} items
+          </Button>
+        )}
       </div>
     </div>
   )

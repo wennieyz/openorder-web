@@ -1,32 +1,29 @@
 
-import CheckIcon from '@mui/icons-material/Check'
-import { IconButton } from '@mui/material'
+
 import { Meta, StoryObj } from '@storybook/react'
-import { fn } from '@storybook/test'
+import DSIconButton from '.'
 
 
 const meta = {
-  title: 'Design System/IconButton', // 👈 The title you'll see in the story's sidebar in Storybook
-  component: IconButton,
+  title: 'Design System/Icon Button', // 👈 The title you'll see in the story's sidebar in Storybook
+  component: DSIconButton,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout
     layout: 'centered',
   },
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ['autodocs'],
-  args: { onClick: fn() },
-} satisfies Meta<typeof IconButton>
+} satisfies Meta<typeof DSIconButton>
 
 export default meta
 type Story = StoryObj<typeof meta>
 
-// 👇 Throws a type error it the args don't match the component props
 const Primary: Story = {
   args: {
-    children: <CheckIcon/>,
-  },
+    icon: 'ShoppingBag',
+    variant: 'primary',
+  }
 }
-
 
 export {
   Primary
