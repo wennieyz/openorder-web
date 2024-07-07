@@ -14,7 +14,12 @@ const Header = ({numItemsInBag}: THeaderProps) => {
     <div className={styles.header}>
       <DSIconButton icon="Home" variant="primary" />
       <Tabs onChange={() => {}} />
-      <div className={classNames(styles.endSection, numItemsInBag && styles.endSectionWithItems)}>
+      <div
+        className={classNames(
+          styles.endSection,
+          numItemsInBag && styles.endSectionWithItems
+        )}
+      >
         <DSIconButton icon="MagnifyingGlass" variant="secondary" />
         {!numItemsInBag ? (
           <DSIconButton icon="ShoppingBag" variant="secondary" />

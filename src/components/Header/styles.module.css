@@ -4,8 +4,8 @@
   align-items: center;
   padding: 0px 16px;
   height: 64px;
-  /* todo: wennie fix this to use css var! blue-30*/
-  background-color: #F5F5F5; 
+  /* todo: wennie fix this to use css var! blue-10*/
+  background-color: #F6F9FC; 
   border-radius: 8px;
 }
 

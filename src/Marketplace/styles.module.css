@@ -1,0 +1,29 @@
+.marketplace {
+  padding: 24px 48px;
+}
+
+.middleSection {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+}
+
+.headerSection {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.dropdowns {
+  margin-top: 48px;
+  display: flex;
+  gap: 8px;
+  align-items: end;
+}
+
+.products {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  row-gap: 24px;
+}

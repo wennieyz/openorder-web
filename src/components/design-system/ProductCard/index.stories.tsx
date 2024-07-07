@@ -30,8 +30,8 @@ const Default: Story = {
     price: 12.5,
     processingTime: '7-10 days',
     minQuantity: '24',
-    variants: ['red', 'blue', 'green'],
-    iconTags: ['waterproof', 'lightweight'],
+    variants: ['red', 'blue', 'green', 'pink', 'yellow', 'purple', 'orange'],
+    iconTags: ['Globe', 'Recycle', 'Leaf'],
   },
 }
 

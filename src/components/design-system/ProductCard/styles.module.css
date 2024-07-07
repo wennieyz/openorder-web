@@ -1,0 +1,31 @@
+.productCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+  width: 320px;
+}
+
+.img {
+  height: 320px;
+  width: 320px;
+}
+
+.brandAndIconsSection {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.icons {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.variants {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
