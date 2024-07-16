@@ -1,7 +1,5 @@
-var express = require('express');
-var router = express.Router();
-const request = require('request');
-const axios = require('axios');
+import { Router } from 'express';
+const router = Router();
 
 const Authorization =
   '808171EC-709C-46C6-9DF3-89E7B9D03525|CE2RQDK-MG8MYJ3-KCMB7PX-MWMYDB7';
@@ -76,7 +74,7 @@ const fetchProductDetails = async (supplierName, productId) => {
 const fetchProductInfos = async (supplierName, productId) => {
   const url = `${apiBaseUrl}${supplierName}/ps/product/getProduct/${productId}`;
   try {
-    const productResponse = await axios.get(url, options);
+    const productResponse = await get(url, options);
     return {
       id: productId,
       name: productResponse.data.data.Product.productName || null,
@@ -101,7 +99,7 @@ const fetchProductInfos = async (supplierName, productId) => {
 const fetchEachSupplierSellableProducts = async (supplier, limit, offset) => {
   try {
     const sellableUrl = `${apiBaseUrl}${supplier.value}/ps/product/getProductSellable`;
-    const response = await axios.get(sellableUrl, options);
+    const response = await get(sellableUrl, options);
     console.log('response!!!', response)
     // console.log('line 105 : ' + response.data.data.ProductSellableArray);
     const products = response.data.data.ProductSellableArray;
@@ -164,7 +162,7 @@ async function fetchMediaContent(supplierCode, productId) {
 
 async function fetchMaxSizeImage(supplierCode, productId) {
   const mediaContentUrl = `${apiBaseUrl}${supplierCode}/ps/med/getMediaContent/${productId}`;
-  const response = await axios.get(mediaContentUrl, options);
+  const response = await get(mediaContentUrl, options);
   // Inspect the response structure
   // console.log('Response Data:', response.data);
 
@@ -217,4 +215,4 @@ router.get('/product/:supplier/:productId', async (req, res, next) => {
   }
 });
 
-module.exports = router;
+export default router;

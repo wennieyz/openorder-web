@@ -1,16 +1,20 @@
-var createError = require('http-errors')
-var express = require('express')
-var path = require('path')
-var cookieParser = require('cookie-parser')
-var logger = require('morgan')
-const cors = require('cors');
+import cookieParser from 'cookie-parser'
+import cors from 'cors'
+import express, { static as expressStatic, json, urlencoded } from 'express'
+import createError from 'http-errors'
+import logger from 'morgan'
+import { dirname, join } from 'path'
+import { fileURLToPath } from 'url'
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 
-var indexRouter = require('./routes/index')
+import helmet from 'helmet'
+import indexRouter from './routes/index.js'
 // var usersRouter = require('./routes/users');
 
-var app = express()
-const helmet = require('helmet')
+const app = express()
 // Use Helmet to set CSP headers
 app.use(
   helmet({
@@ -56,11 +60,11 @@ app.use(
 // app.set('view engine', 'ejs')
 
 app.use(logger('dev'))
-app.use(express.json())
-app.use(express.urlencoded({extended: false}))
+app.use(json())
+app.use(urlencoded({extended: false}))
 app.use(cookieParser())
 app.use(cors())
-app.use(express.static(path.join(__dirname, 'public')))
+app.use(expressStatic(join(__dirname, 'public')))
 
 app.use('/', indexRouter)
 // app.use('/users', usersRouter);
@@ -81,4 +85,4 @@ app.use(function (err, req, res, next) {
   res.render('error')
 })
 
-module.exports = app
+export default app
