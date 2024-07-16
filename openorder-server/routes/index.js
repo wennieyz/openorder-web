@@ -102,6 +102,7 @@ const fetchEachSupplierSellableProducts = async (supplier, limit, offset) => {
   try {
     const sellableUrl = `${apiBaseUrl}${supplier.value}/ps/product/getProductSellable`;
     const response = await axios.get(sellableUrl, options);
+    console.log('response!!!', response)
     // console.log('line 105 : ' + response.data.data.ProductSellableArray);
     const products = response.data.data.ProductSellableArray;
     const uniqueProductIds = [
@@ -147,6 +148,10 @@ router.get('/', async (req, res, next) => {
     next(error);
   }
 });
+
+router.get('/hello', async (req, res, next) => {
+  res.send({message: 'Hello from server!'})
+})
 
 async function fetchMediaContent(supplierCode, productId) {
   const mediaContentUrl = `${apiBaseUrl}${supplierCode}/ps/med/getMediaContent/${productId}`;
