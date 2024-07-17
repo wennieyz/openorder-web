@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>All Products</title>
+  <% include head %>
+</head>
+<body>
+
+  <% include navbar %>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <h1>Product Images</h1>
+      </div>
+      <% allProducts.forEach((supplier) => { %>
+        <div class="col-sm-12">
+          <!-- <h2><%= supplier.supplier %></h2> -->
+          <div class="row">
+            <% supplier.products.forEach((product) => { %>
+              <div class="col-md-3 col-sm-4 image">
+                <% if (product.imageUrl) { %>
+					<a href="/product/<%= supplier.supplier %>/<%= product.id %>"><img src="<%= product.imageUrl %>" alt="Image for <%= product.id %>" /></a>
+                <% } else { %>
+                  <p>No image available for <%= product.id %></p>
+                <% } %>
+              </div>
+            <% }) %>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+    <div class="pagination">
+      <% if (currentPage > 1) { %>
+        <a href="?page=<%= currentPage - 1 %>&limit=<%= limit %>">Previous</a>
+      <% } %>
+      <a href="?page=<%= currentPage + 1 %>&limit=<%= limit %>">Next</a>
+    </div>
+  </div>
+</body>
+</html>

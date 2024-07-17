@@ -1,12 +1,18 @@
-import { useState } from 'react'
+import classNames from 'classnames'
+import { useEffect, useState } from 'react'
 import './App.css'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
-import classNames from 'classnames'
 
 
 function App() {
   const [count, setCount] = useState(0)
+  useEffect(() => {
+    fetch("http://localhost:3000/hello")
+      .then((res) => res.json())
+      .then((data) => console.log(data));
+  }, []);
+
 
   return (
     <>
