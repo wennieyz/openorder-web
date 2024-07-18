@@ -1,11 +1,9 @@
+import Header from '@/components/Header'
+import ProductCard, {TProductCardProps} from '@/components/ProductCard'
+import DSDropdown from '@/components/design-system/DSDropdown'
+import {baseColors} from '@/styleVariables'
 import {Button, Typography} from '@mui/material'
-import Header from '../components/Header'
-import ProductCard, {
-  TProductCardProps,
-} from '../components/design-system/ProductCard'
 import styles from './styles.module.css'
-import DSDropdown from '../components/design-system/DSDropdown'
-import {baseColors} from '../styleVariables'
 
 const mockProducts: TProductCardProps[] = [
   {
@@ -67,7 +65,7 @@ const mockProducts: TProductCardProps[] = [
 
 const Marketplace = () => {
   return (
-    <div className={styles.marketplace}>
+    <div>
       <Header />
       <div className={styles.middleSection}>
         <div className={styles.headerSection}>

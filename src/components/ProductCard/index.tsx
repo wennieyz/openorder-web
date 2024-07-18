@@ -1,8 +1,8 @@
+import {baseColors} from '@/styleVariables'
 import {Typography} from '@mui/material'
+import DSIcon from '../design-system/icons/DSIcon'
+import {CircleIcon} from '../design-system/icons/allIcons'
 import styles from './styles.module.css'
-import {baseColors} from '../../../styleVariables'
-import DSIcon from '../icons/DSIcon'
-import {CircleIcon} from '../icons/allIcons'
 
 export type TProductCardProps = {
   imgUrl: string
