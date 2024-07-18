@@ -1,7 +1,7 @@
 // var express = require('express');
 // var router = express.Router();
 
-const { enableLogging } = require('firebase/database');
+const {enableLogging} = require('firebase/database')
 
 // /* GET users listing. */
 // router.get('/', function(req, res, next) {

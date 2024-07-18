@@ -354,8 +354,8 @@ const eslintConfig = {
     'react/prop-types': 'off',
     'react/jsx-no-bind': 'off',
     'react/jsx-wrap-multilines': 'off',
-    "react/react-in-jsx-scope": "off",
-    "react/jsx-uses-react": "off",
+    'react/react-in-jsx-scope': 'off',
+    'react/jsx-uses-react': 'off',
     'react/self-closing-comp': 'error',
     'semi': ['error', 'never'],
     'sort-imports': [
@@ -392,7 +392,7 @@ const eslintConfig = {
     // NB: we want to mark the types we created for external packages as still external so our import/order is correctly externals *then* internals
     'import/external-module-folders': ['node_modules', 'src/node_modules'],
     'import/resolver': {
-      'typescript': {
+      typescript: {
         // always try to resolve types under `<root>@types` directory even it doesn't contain any source code, like `@types/unist`
         // source: https://github.com/alexgorbatchev/eslint-import-resolver-typescript
         alwaysTryTypes: true,

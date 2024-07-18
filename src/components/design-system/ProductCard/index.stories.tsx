@@ -1,4 +1,4 @@
-import { StoryObj } from '@storybook/react'
+import {StoryObj} from '@storybook/react'
 import ProductCard from '.'
 
 const meta = {
@@ -10,14 +10,14 @@ const meta = {
   },
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ['autodocs'],
-  args: { imgUrl: 'src/assets/productImages/duck-bag.png' },
+  args: {imgUrl: 'src/assets/productImages/duck-bag.png'},
   decorators: [
     (Story: any) => (
-      <div style={{ width: '800px', height: '100%' }}>
+      <div style={{width: '800px', height: '100%'}}>
         <Story />
       </div>
-    )
-  ]
+    ),
+  ],
 }
 
 export default meta
@@ -35,6 +35,4 @@ const Default: Story = {
   },
 }
 
-export {
-  Default,
-}
+export {Default}

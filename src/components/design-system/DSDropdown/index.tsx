@@ -6,16 +6,15 @@ import {
   Select,
   SelectChangeEvent,
   styled,
-} from "@mui/material"
-import React from "react"
-import { baseColors } from "../../../styleVariables"
+} from '@mui/material'
+import React from 'react'
+import {baseColors} from '../../../styleVariables'
 
-const StyledMenuItem = styled(MenuItem)<MenuItemProps>(({ theme }) => ({
+const StyledMenuItem = styled(MenuItem)<MenuItemProps>(({theme}) => ({
   fontSize: '13px',
   color: theme.palette.primary.main,
   minHeight: 'initial',
 }))
-
 
 type TDSDropdownOption = {
   disabled?: boolean
@@ -61,7 +60,7 @@ type TDSDropdownProps = {
   value?: string
 }
 
-const DSDropdown =({
+const DSDropdown = ({
   disabled,
   error,
   errorMessage,
@@ -72,11 +71,14 @@ const DSDropdown =({
   value = '',
 }: TDSDropdownProps) => {
   const optionValueToLabel: Record<string, string | React.ReactNode> =
-    options.reduce((acc, option) => {
-      acc[option.value] = option.label
-      return acc
-    }, {} as Record<string, string | React.ReactNode>)
-    // todo: figure out sth out casting ts error
+    options.reduce(
+      (acc, option) => {
+        acc[option.value] = option.label
+        return acc
+      },
+      {} as Record<string, string | React.ReactNode>
+    )
+  // todo: figure out sth out casting ts error
 
   return (
     <>

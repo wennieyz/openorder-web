@@ -1,8 +1,6 @@
-
-import { Chip  } from '@mui/material'
-import { Meta, StoryObj } from '@storybook/react'
-import { fn } from '@storybook/test'
-
+import {Chip} from '@mui/material'
+import {Meta, StoryObj} from '@storybook/react'
+import {fn} from '@storybook/test'
 
 const meta = {
   title: 'Design System/Chip', // 👈 The title you'll see in the story's sidebar in Storybook
@@ -13,7 +11,7 @@ const meta = {
   },
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ['autodocs'],
-  args: { onClick: fn() },
+  args: {onClick: fn()},
 } satisfies Meta<typeof Chip>
 
 export default meta
@@ -29,12 +27,8 @@ const Primary: Story = {
 const Secondary: Story = {
   args: {
     label: 'Text',
-    color: 'secondary'
+    color: 'secondary',
   },
 }
 
-
-export {
-  Primary,
-  Secondary,
-}
+export {Primary, Secondary}

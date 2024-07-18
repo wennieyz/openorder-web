@@ -1,27 +1,31 @@
 body {
   padding: 10px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font:
+    14px 'Lucida Grande',
+    Helvetica,
+    Arial,
+    sans-serif;
 }
 
 a {
-  color: #00B7FF;
+  color: #00b7ff;
 }
 
-.navbar-right{
+.navbar-right {
   margin-right: 10px;
 }
 
-.image img{
+.image img {
   width: 90%;
   text-align: center;
   margin: 10px 5% 10px;
 }
 
-#search-form input{
+#search-form input {
   margin: 8px 0px;
   padding: 5px;
 }
 
-.form-group select{
+.form-group select {
   min-width: 150px;
 }

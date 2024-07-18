@@ -1,4 +1,4 @@
-import { StoryObj } from '@storybook/react'
+import {StoryObj} from '@storybook/react'
 import Header from '.'
 
 const meta = {
@@ -13,11 +13,11 @@ const meta = {
   // args: { onChange: fn() },
   decorators: [
     (Story: any) => (
-      <div style={{ width: '800px', height: '100%' }}>
+      <div style={{width: '800px', height: '100%'}}>
         <Story />
       </div>
-    )
-  ]
+    ),
+  ],
 }
 
 export default meta
@@ -34,7 +34,4 @@ const WithItemsInBag: Story = {
     numItemsInBag: 3,
   },
 }
-export {
-  Default,
-  WithItemsInBag
-}
+export {Default, WithItemsInBag}

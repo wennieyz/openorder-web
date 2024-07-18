@@ -1,6 +1,6 @@
-import { SvgIcon } from "@mui/material"
-import icon, { IconName, TIconStyleProps } from "./allIcons"
-import { baseColors } from "../../../styleVariables"
+import {SvgIcon} from '@mui/material'
+import icon, {IconName, TIconStyleProps} from './allIcons'
+import {baseColors} from '../../../styleVariables'
 
 type TDSIconProps = {
   name: IconName
@@ -14,11 +14,7 @@ const DSIcon = ({color, name, iconStyleProps}: TDSIconProps) => {
     ...(color === 'primary' && {stroke: `${baseColors['--white']}`}),
     ...iconStyleProps,
   }
-  return (
-    <SvgIcon color={color}>
-      {icon(name, iconProps)}
-    </SvgIcon>
-  )
+  return <SvgIcon color={color}>{icon(name, iconProps)}</SvgIcon>
 }
 
 export default DSIcon

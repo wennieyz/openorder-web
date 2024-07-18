@@ -1,7 +1,7 @@
 import Tabs from '../Tabs'
 import styles from './styles.module.css'
 import DSIconButton from '../design-system/DSIconButton'
-import { Button } from '@mui/material'
+import {Button} from '@mui/material'
 import DSIcon from '../design-system/icons/DSIcon'
 import classNames from 'classnames'
 

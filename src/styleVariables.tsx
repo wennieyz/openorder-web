@@ -17,7 +17,6 @@ const baseColors = {
   '--blue-20': '#E9F0F7',
   '--blue-10': '#F6F9FC',
 
-
   /* Gray */
   '--gray-100': '#262B35',
   '--gray-90': '#353A44',
@@ -79,12 +78,8 @@ const baseColors = {
   '--purple-10': '#F0ECFF',
 }
 
-
 const fonts = {
   '--monospace-font': "'Roboto Mono', monospace",
 }
 
-export {
-  baseColors,
-  fonts
-}
+export {baseColors, fonts}

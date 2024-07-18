@@ -1,4 +1,4 @@
-import { Badge, SvgIconProps } from '@mui/material'
+import {Badge, SvgIconProps} from '@mui/material'
 import classNames from 'classnames'
 import React from 'react'
 import styles from './styles.module.css'
@@ -29,7 +29,7 @@ type TDSBadgeProps = {
 }
 
 const DSBadge = ({
-  color = "gray",
+  color = 'gray',
   text,
   className,
   icon,
@@ -40,7 +40,7 @@ const DSBadge = ({
       className={classNames(
         className,
         styles.badge,
-        iconPosition === "end" && styles.endIcon
+        iconPosition === 'end' && styles.endIcon
       )}
       color={color}
     >

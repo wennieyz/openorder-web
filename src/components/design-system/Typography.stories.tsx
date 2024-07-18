@@ -1,5 +1,5 @@
-import { Typography, TypographyProps } from '@mui/material'
-import { Meta, StoryObj } from '@storybook/react'
+import {Typography, TypographyProps} from '@mui/material'
+import {Meta, StoryObj} from '@storybook/react'
 
 const meta = {
   title: 'Foundation/Typography', // 👈 The title you'll see in the story's sidebar in Storybook
@@ -34,30 +34,23 @@ const H1: Story = {
 }
 
 const H2: Story = {
-  args: { ...defaultProps, variant: 'h2',},
+  args: {...defaultProps, variant: 'h2'},
 }
 
 const H3: Story = {
-  args: { ...defaultProps, variant: 'h3' },
+  args: {...defaultProps, variant: 'h3'},
 }
 
 const H4: Story = {
-  args: { ...defaultProps, variant: 'h4' },
+  args: {...defaultProps, variant: 'h4'},
 }
 
 const Paragraph: Story = {
-  args: { ...defaultProps, variant: 'paragraph' },
+  args: {...defaultProps, variant: 'paragraph'},
 }
 
 const Caption: Story = {
-  args: { ...defaultProps, variant: 'caption' },
+  args: {...defaultProps, variant: 'caption'},
 }
 
-export {
-  H1,
-  H2,
-  H3,
-  H4,
-  Paragraph,
-  Caption,
-}
+export {H1, H2, H3, H4, Paragraph, Caption}

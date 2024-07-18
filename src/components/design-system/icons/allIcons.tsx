@@ -1,4 +1,4 @@
-import { baseColors } from "../../../styleVariables"
+import {baseColors} from '../../../styleVariables'
 
 export type TIconStyleProps = {
   stroke?: string
@@ -195,8 +195,8 @@ const allIcons: Record<string, (props: TIconStyleProps) => React.ReactElement> =
 
 const icon = (name: IconName, props?: TIconStyleProps) => {
   const Icon = allIcons[name]
-  const allProps = { ...defaultProps, ...props }
-  return <Icon {...allProps}/>
+  const allProps = {...defaultProps, ...props}
+  return <Icon {...allProps} />
 }
 
 type TCircleIconProps = {
@@ -204,19 +204,18 @@ type TCircleIconProps = {
 }
 
 export const CircleIcon = ({fill}: TCircleIconProps) => (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke={fill}
-    >
-      <circle cx="12" cy="12" r="11" fill={fill} />
-    </svg>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke={fill}
+  >
+    <circle cx="12" cy="12" r="11" fill={fill} />
+  </svg>
 )
 
 export type IconName = keyof typeof allIcons
 
 export default icon
-

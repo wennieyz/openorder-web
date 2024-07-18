@@ -1,5 +1,5 @@
-import { StoryObj } from '@storybook/react'
-import { fn } from '@storybook/test'
+import {StoryObj} from '@storybook/react'
+import {fn} from '@storybook/test'
 import DSTabs from '.'
 
 const meta = {
@@ -11,15 +11,11 @@ const meta = {
   },
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ['autodocs'],
-  args: { onChange: fn() },
+  args: {onChange: fn()},
 }
 
 export default meta
 type Story = StoryObj<typeof meta>
 
-const Primary: Story = {
-
-}
-export {
-  Primary
-}
+const Primary: Story = {}
+export {Primary}

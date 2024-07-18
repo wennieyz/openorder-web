@@ -1,6 +1,5 @@
-
-import { CheckCircleOutline } from '@mui/icons-material'
-import { Meta, StoryObj } from '@storybook/react'
+import {CheckCircleOutline} from '@mui/icons-material'
+import {Meta, StoryObj} from '@storybook/react'
 import DSBadge from '.'
 
 const meta = {
@@ -71,14 +70,10 @@ const WithIcon: Story = {
   name: 'With Icon',
   args: {
     text: 'Badge',
-    icon: <CheckCircleOutline fontSize='small'/>,
+    icon: <CheckCircleOutline fontSize="small" />,
     iconPosition: 'end',
-    color: 'white'
-  }
+    color: 'white',
+  },
 }
 
-
-export {
-  Blue, Gray, Green, Purple, Red, White,
-  WithIcon, Yellow
-}
+export {Blue, Gray, Green, Purple, Red, White, WithIcon, Yellow}

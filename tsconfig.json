@@ -20,17 +20,19 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
 
-    "plugins": [{
-      "name": "typescript-plugin-css-modules",
-      "options": {
-        "customMatcher": "\\.css$",
-        "postcssOptions": {
-          // tells it to reference `.postcssrc.ts` for a list of plugins to preprocess CSS files with before running
-          "useConfig": true
+    "plugins": [
+      {
+        "name": "typescript-plugin-css-modules",
+        "options": {
+          "customMatcher": "\\.css$",
+          "postcssOptions": {
+            // tells it to reference `.postcssrc.ts` for a list of plugins to preprocess CSS files with before running
+            "useConfig": true
+          }
         }
       }
-    }]
+    ]
   },
   "include": ["src", ".storybook/*", "vite.config.ts"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "references": [{"path": "./tsconfig.node.json"}]
 }

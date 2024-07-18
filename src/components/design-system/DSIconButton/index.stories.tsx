@@ -1,8 +1,5 @@
-
-
-import { Meta, StoryObj } from '@storybook/react'
+import {Meta, StoryObj} from '@storybook/react'
 import DSIconButton from '.'
-
 
 const meta = {
   title: 'Design System/Icon Button', // 👈 The title you'll see in the story's sidebar in Storybook
@@ -22,9 +19,7 @@ const Primary: Story = {
   args: {
     icon: 'ShoppingBag',
     variant: 'primary',
-  }
+  },
 }
 
-export {
-  Primary
-}
+export {Primary}

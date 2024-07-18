@@ -1,14 +1,13 @@
 import cookieParser from 'cookie-parser'
 import cors from 'cors'
-import express, { static as expressStatic, json, urlencoded } from 'express'
+import express, {static as expressStatic, json, urlencoded} from 'express'
 import createError from 'http-errors'
 import logger from 'morgan'
-import { dirname, join } from 'path'
-import { fileURLToPath } from 'url'
+import {dirname, join} from 'path'
+import {fileURLToPath} from 'url'
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
 
 import helmet from 'helmet'
 import indexRouter from './routes/index.js'

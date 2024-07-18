@@ -1,10 +1,11 @@
-import { Button, Typography } from "@mui/material"
-import Header from "../components/Header"
-import ProductCard, { TProductCardProps } from "../components/design-system/ProductCard"
+import {Button, Typography} from '@mui/material'
+import Header from '../components/Header'
+import ProductCard, {
+  TProductCardProps,
+} from '../components/design-system/ProductCard'
 import styles from './styles.module.css'
-import DSDropdown from "../components/design-system/DSDropdown"
-import { baseColors } from "../styleVariables"
-
+import DSDropdown from '../components/design-system/DSDropdown'
+import {baseColors} from '../styleVariables'
 
 const mockProducts: TProductCardProps[] = [
   {
@@ -16,28 +17,6 @@ const mockProducts: TProductCardProps[] = [
     minQuantity: '1',
     processingTime: '1-2 days',
     variants: ['Yellow', 'Blue', 'Green'],
-    iconTags: ['Globe', 'Recycle', 'Leaf']
-  },
-  {
-    brandName: 'Baggu',
-    imgUrl: 'src/assets/productImages/duck-bag.png',
-    productTitle: 'Duck Bag',
-    price: 10,
-    isPriceMin: true,
-    minQuantity: '1',
-    processingTime: '1-2 days',
-    variants: ['Yellow', 'Blue', 'Green'],
-    iconTags: ['Globe', 'Recycle', 'Leaf']
-  },
-  {
-    brandName: 'Baggu',
-    imgUrl: 'src/assets/productImages/duck-bag.png',
-    productTitle: 'Duck Bag',
-    price: 10,
-    isPriceMin: true,
-    minQuantity: '1',
-    processingTime: '1-2 days',
-    variants: ['Yellow', 'Blue', 'Green'],
     iconTags: ['Globe', 'Recycle', 'Leaf'],
   },
   {
@@ -61,7 +40,29 @@ const mockProducts: TProductCardProps[] = [
     processingTime: '1-2 days',
     variants: ['Yellow', 'Blue', 'Green'],
     iconTags: ['Globe', 'Recycle', 'Leaf'],
-  }
+  },
+  {
+    brandName: 'Baggu',
+    imgUrl: 'src/assets/productImages/duck-bag.png',
+    productTitle: 'Duck Bag',
+    price: 10,
+    isPriceMin: true,
+    minQuantity: '1',
+    processingTime: '1-2 days',
+    variants: ['Yellow', 'Blue', 'Green'],
+    iconTags: ['Globe', 'Recycle', 'Leaf'],
+  },
+  {
+    brandName: 'Baggu',
+    imgUrl: 'src/assets/productImages/duck-bag.png',
+    productTitle: 'Duck Bag',
+    price: 10,
+    isPriceMin: true,
+    minQuantity: '1',
+    processingTime: '1-2 days',
+    variants: ['Yellow', 'Blue', 'Green'],
+    iconTags: ['Globe', 'Recycle', 'Leaf'],
+  },
 ]
 
 const Marketplace = () => {
@@ -70,10 +71,21 @@ const Marketplace = () => {
       <Header />
       <div className={styles.middleSection}>
         <div className={styles.headerSection}>
-          <Typography color={`${baseColors['--gray-90']}`}variant="h1" fontWeight={500}>Welcome to the Marketplace</Typography>
+          <Typography
+            color={`${baseColors['--gray-90']}`}
+            variant="h1"
+            fontWeight={500}
+          >
+            Welcome to the Marketplace
+          </Typography>
           <Button color="secondary" children="Work with us" />
         </div>
-        <Typography width={500} color={`${baseColors['--gray-80']}`} variant="h3" fontWeight={400}>
+        <Typography
+          width={500}
+          color={`${baseColors['--gray-80']}`}
+          variant="h3"
+          fontWeight={400}
+        >
           Explore thousands of products for corporate merchandising and gifting
         </Typography>
         <div className={styles.dropdowns}>
@@ -82,7 +94,7 @@ const Marketplace = () => {
             onChange={() => {}}
             title="Lead time"
             options={[{label: 'Less than 24', value: 'Less than 24'}]}
-            value='Less than 24'
+            value="Less than 24"
           />
           <DSDropdown
             onChange={() => {}}
@@ -113,7 +125,6 @@ const Marketplace = () => {
       </div>
     </div>
   )
-
 }
 
 export default Marketplace

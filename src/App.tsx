@@ -1,27 +1,20 @@
-import classNames from 'classnames'
-import { useEffect, useState } from 'react'
+import {useEffect, useState} from 'react'
 import './App.css'
-import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
-
 
 function App() {
   const [count, setCount] = useState(0)
   useEffect(() => {
-    fetch("http://localhost:3000/hello")
-      .then((res) => res.json())
-      .then((data) => console.log(data));
-  }, []);
-
+    fetch('http://localhost:3000/hello')
+      .then(res => res.json())
+      .then(data => console.log(data))
+  }, [])
 
   return (
     <>
       <div>
         <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
           <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank" rel="noreferrer">
-          <img src={reactLogo} className={classNames('logo', 'react')} alt="React logo" />
         </a>
       </div>
       <h1>Vite + React</h1>

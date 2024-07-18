@@ -1,19 +1,19 @@
-import { Typography } from '@mui/material'
+import {Typography} from '@mui/material'
 import styles from './styles.module.css'
-import { baseColors } from '../../../styleVariables'
+import {baseColors} from '../../../styleVariables'
 import DSIcon from '../icons/DSIcon'
-import { CircleIcon } from '../icons/allIcons'
+import {CircleIcon} from '../icons/allIcons'
 
 export type TProductCardProps = {
-  imgUrl: string,
-  productTitle: string,
-  brandName: string,
-  price: number,
-  isPriceMin?: boolean,
-  processingTime: string,
-  minQuantity: string,
-  variants?: string[],
-  iconTags?: string[],
+  imgUrl: string
+  productTitle: string
+  brandName: string
+  price: number
+  isPriceMin?: boolean
+  processingTime: string
+  minQuantity: string
+  variants?: string[]
+  iconTags?: string[]
 }
 
 const ProductCard = ({
