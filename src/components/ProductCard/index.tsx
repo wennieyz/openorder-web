@@ -67,8 +67,8 @@ const ProductCard = ({
       />
       {variants && variants.length && (
         <div className={styles.variants}>
-          {variants.slice(0, 6).map(variant => (
-            <CircleIcon fill={variant} />
+          {variants.slice(0, 6).map((variant, index) => (
+            <CircleIcon key={index} fill={variant} />
           ))}
           <Typography
             variant="caption"
