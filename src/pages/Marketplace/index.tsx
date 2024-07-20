@@ -1,8 +1,9 @@
+import {Button, Typography} from '@mui/material'
+import DSDropdown from '@/components/design-system/DSDropdown'
 import Header from '@/components/Header'
 import ProductCard, {TProductCardProps} from '@/components/ProductCard'
-import DSDropdown from '@/components/design-system/DSDropdown'
 import {baseColors} from '@/styleVariables'
-import {Button, Typography} from '@mui/material'
+
 import styles from './styles.module.css'
 
 const mockProducts: TProductCardProps[] = [
@@ -90,36 +91,46 @@ const Marketplace = () => {
         <div className={styles.dropdowns}>
           <DSDropdown
             helperText='Minimum'
-            onChange={() => {}}
+            onChange={() => {
+              /* TODO: need to fill this out */
+            }}
             title='Lead time'
             options={[{label: 'Less than 24', value: 'Less than 24'}]}
             value='Less than 24'
           />
           <DSDropdown
-            onChange={() => {}}
+            onChange={() => {
+              /* TODO: need to fill this out */
+            }}
             title='Lead time'
             options={[{label: '1 day', value: '1 day'}]}
           />
           <DSDropdown
-            onChange={() => {}}
+            onChange={() => {
+              /* TODO: need to fill this out */
+            }}
             title='Price'
             options={[{label: '1 day', value: '1 day'}]}
           />
           <DSDropdown
-            onChange={() => {}}
+            onChange={() => {
+              /* TODO: need to fill this out */
+            }}
             title='Color'
             options={[{label: '1 day', value: '1 day'}]}
           />
           <DSDropdown
-            onChange={() => {}}
+            onChange={() => {
+              /* TODO: need to fill this out */
+            }}
             title='Impact'
             options={[{label: '1 day', value: '1 day'}]}
           />
         </div>
       </div>
       <div className={styles.products}>
-        {mockProducts.map((product, index) => (
-          <ProductCard key={index} {...product} />
+        {mockProducts.map(product => (
+          <ProductCard key={product.productTitle} {...product} />
         ))}
       </div>
     </div>

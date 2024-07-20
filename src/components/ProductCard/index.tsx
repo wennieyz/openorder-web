@@ -1,7 +1,7 @@
-import {baseColors} from '@/styleVariables'
 import {Typography} from '@mui/material'
-import DSIcon from '../design-system/icons/DSIcon'
+import {baseColors} from '@/styleVariables'
 import {CircleIcon} from '../design-system/icons/allIcons'
+import DSIcon from '../design-system/icons/DSIcon'
 import styles from './styles.module.css'
 
 export type TProductCardProps = {
@@ -67,8 +67,8 @@ const ProductCard = ({
       />
       {variants && variants.length && (
         <div className={styles.variants}>
-          {variants.slice(0, 6).map((variant, index) => (
-            <CircleIcon key={index} fill={variant} />
+          {variants.slice(0, 6).map(variant => (
+            <CircleIcon key={variant} fill={variant} />
           ))}
           <Typography
             variant='caption'

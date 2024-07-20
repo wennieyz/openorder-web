@@ -53,8 +53,9 @@ const eslintConfig = {
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    project: ['./tsconfig.json'],
+    project: ['./tsconfig.json', './tsconfig.node.json'],
     sourceType: 'module',
+    tsconfigRootDir: __dirname,
   },
   plugins: [
     'eslint-plugin-react',
@@ -64,9 +65,9 @@ const eslintConfig = {
     'jest',
     'etc', // https://github.com/cartant/eslint-plugin-etc
   ],
-  ignorePatterns: ['cms', 'src/__generated__', '!.storybook'],
+  ignorePatterns: ['cms', '.eslintrc.cjs', 'src/__generated__', '!.storybook'],
   rules: {
-    'quotes': 2,
+    'quotes': [2, 'single', {avoidEscape: true}],
     'no-restricted-properties': [
       'warn',
       {

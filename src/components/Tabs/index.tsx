@@ -1,24 +1,24 @@
-import Box from "@mui/material/Box"
-import Tab, {TabProps} from "@mui/material/Tab"
-import MuiTabs from "@mui/material/Tabs"
-import {styled} from "@mui/system"
-import * as React from "react"
-import {baseColors} from "../../styleVariables"
+import Box from '@mui/material/Box'
+import Tab, {TabProps} from '@mui/material/Tab'
+import MuiTabs from '@mui/material/Tabs'
+import {styled} from '@mui/system'
+import * as React from 'react'
+import {baseColors} from '../../styleVariables'
 
 function a11yProps(index: number) {
   return {
-    "id": `simple-tab-${index}`,
-    "aria-controls": `simple-tabpanel-${index}`,
+    'id': `simple-tab-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`,
   }
 }
 
 const StyledTab = styled(Tab)<TabProps>(({theme}) => ({
-  "textTransform": "none",
-  "fontWeight": "500",
-  "&.MuiTab-root.MuiTab-textColorPrimary:hover": {
+  'textTransform': 'none',
+  'fontWeight': '500',
+  '&.MuiTab-root.MuiTab-textColorPrimary:hover': {
     color: theme.palette.gray[90],
   },
-  "&.MuiTab-root.MuiTab-textColorPrimary.Mui-selected": {
+  '&.MuiTab-root.MuiTab-textColorPrimary.Mui-selected': {
     color: theme.palette.blue[80],
   },
 }))
@@ -42,7 +42,7 @@ const Tabs = (props: TTabsProps) => {
         onChange={handleChange}
         TabIndicatorProps={{
           style: {
-            backgroundColor: `${baseColors["--blue-80"]}`, // TODO: wennie clean this up
+            backgroundColor: `${baseColors['--blue-80']}`, // TODO: wennie clean this up
           },
         }}
       >
