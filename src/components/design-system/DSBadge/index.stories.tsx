@@ -70,7 +70,7 @@ const WithIcon: Story = {
   name: 'With Icon',
   args: {
     text: 'Badge',
-    icon: <CheckCircleOutline fontSize="small" />,
+    icon: <CheckCircleOutline fontSize='small' />,
     iconPosition: 'end',
     color: 'white',
   },

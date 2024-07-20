@@ -12,7 +12,7 @@ type THeaderProps = {
 const Header = ({numItemsInBag}: THeaderProps) => {
   return (
     <div className={styles.header}>
-      <DSIconButton icon="Home" variant="primary" />
+      <DSIconButton icon='Home' variant='primary' />
       <Tabs onChange={() => {}} />
       <div
         className={classNames(
@@ -20,13 +20,13 @@ const Header = ({numItemsInBag}: THeaderProps) => {
           numItemsInBag && styles.endSectionWithItems
         )}
       >
-        <DSIconButton icon="MagnifyingGlass" variant="secondary" />
+        <DSIconButton icon='MagnifyingGlass' variant='secondary' />
         {!numItemsInBag ? (
-          <DSIconButton icon="ShoppingBag" variant="secondary" />
+          <DSIconButton icon='ShoppingBag' variant='secondary' />
         ) : (
           <Button
-            startIcon={<DSIcon name="ShoppingBag" color="primary" />}
-            color="primary"
+            startIcon={<DSIcon name='ShoppingBag' color='primary' />}
+            color='primary'
           >
             {numItemsInBag} items
           </Button>

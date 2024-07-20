@@ -71,48 +71,48 @@ const Marketplace = () => {
         <div className={styles.headerSection}>
           <Typography
             color={`${baseColors['--gray-90']}`}
-            variant="h1"
+            variant='h1'
             fontWeight={500}
           >
             Welcome to the Marketplace
           </Typography>
-          <Button color="secondary" children="Work with us" />
+          <Button color='secondary' children='Work with us' />
         </div>
         <Typography
           width={500}
           color={`${baseColors['--gray-80']}`}
-          variant="h3"
+          variant='h3'
           fontWeight={400}
-          textAlign="left"
+          textAlign='left'
         >
           Explore thousands of products for corporate merchandising and gifting
         </Typography>
         <div className={styles.dropdowns}>
           <DSDropdown
-            helperText="Minimum"
+            helperText='Minimum'
             onChange={() => {}}
-            title="Lead time"
+            title='Lead time'
             options={[{label: 'Less than 24', value: 'Less than 24'}]}
-            value="Less than 24"
+            value='Less than 24'
           />
           <DSDropdown
             onChange={() => {}}
-            title="Lead time"
+            title='Lead time'
             options={[{label: '1 day', value: '1 day'}]}
           />
           <DSDropdown
             onChange={() => {}}
-            title="Price"
+            title='Price'
             options={[{label: '1 day', value: '1 day'}]}
           />
           <DSDropdown
             onChange={() => {}}
-            title="Color"
+            title='Color'
             options={[{label: '1 day', value: '1 day'}]}
           />
           <DSDropdown
             onChange={() => {}}
-            title="Impact"
+            title='Impact'
             options={[{label: '1 day', value: '1 day'}]}
           />
         </div>

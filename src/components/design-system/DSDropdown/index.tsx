@@ -82,7 +82,7 @@ const DSDropdown = ({
 
   return (
     <>
-      <FormControl size="small" error={error} disabled={disabled}>
+      <FormControl size='small' error={error} disabled={disabled}>
         {helperText && (
           <FormHelperText
             sx={{

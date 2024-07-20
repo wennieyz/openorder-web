@@ -29,21 +29,21 @@ const ProductCard = ({
 }: TProductCardProps) => {
   return (
     <div className={styles.productCard}>
-      <img src={imgUrl} alt="product" className={styles.img} />
+      <img src={imgUrl} alt='product' className={styles.img} />
       <div className={styles.brandAndIconsSection}>
         <Typography
           fontWeight={500}
           color={`${baseColors['--gray-50']}`}
-          variant="paragraph"
+          variant='paragraph'
           children={brandName}
-          textTransform="uppercase"
+          textTransform='uppercase'
         />
         <div className={styles.icons}>
           {iconTags?.map(tag => (
             <DSIcon
               key={tag}
               name={tag}
-              color="secondary"
+              color='secondary'
               iconStyleProps={{
                 stroke: `${baseColors['--gray-60']}`,
                 strokeWidth: '1',
@@ -52,15 +52,15 @@ const ProductCard = ({
           ))}
         </div>
       </div>
-      <Typography variant="h3" fontWeight="bold" children={productTitle} />
+      <Typography variant='h3' fontWeight='bold' children={productTitle} />
       <Typography
-        variant="paragraph"
+        variant='paragraph'
         children={`$${price}${isPriceMin ? '+' : ''} | QTY ${minQuantity}`}
         fontWeight={500}
         color={`${baseColors['--gray-80']}`}
       />
       <Typography
-        variant="paragraph"
+        variant='paragraph'
         children={processingTime}
         fontWeight={500}
         color={`${baseColors['--gray-80']}`}
@@ -71,7 +71,7 @@ const ProductCard = ({
             <CircleIcon key={index} fill={variant} />
           ))}
           <Typography
-            variant="caption"
+            variant='caption'
             children={`+${variants.length > 6 ? variants.length - 6 : variants.length}`}
             color={`${baseColors['--gray-60']}`}
           />

@@ -47,10 +47,10 @@ const Tabs = (props: TTabsProps) => {
           },
         }}
       >
-        <StyledTab label="Discover" {...a11yProps(0)} />
-        <StyledTab label="Favorites" {...a11yProps(1)} />
-        <StyledTab label="Brands" {...a11yProps(2)} />
-        <StyledTab label="Categories" {...a11yProps(3)} />
+        <StyledTab label='Discover' {...a11yProps(0)} />
+        <StyledTab label='Favorites' {...a11yProps(1)} />
+        <StyledTab label='Brands' {...a11yProps(2)} />
+        <StyledTab label='Categories' {...a11yProps(3)} />
       </MuiTabs>
     </Box>
   )
