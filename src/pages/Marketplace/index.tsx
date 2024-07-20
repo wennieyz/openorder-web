@@ -83,6 +83,7 @@ const Marketplace = () => {
           color={`${baseColors['--gray-80']}`}
           variant="h3"
           fontWeight={400}
+          textAlign="left"
         >
           Explore thousands of products for corporate merchandising and gifting
         </Typography>
