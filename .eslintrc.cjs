@@ -66,7 +66,7 @@ const eslintConfig = {
   ],
   ignorePatterns: ['cms', 'src/__generated__', '!.storybook'],
   rules: {
-    'quotes': '1',
+    'quotes': 2,
     'no-restricted-properties': [
       'warn',
       {
