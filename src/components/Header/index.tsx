@@ -1,19 +1,63 @@
+import {Button} from '@mui/material'
+import classNames from 'classnames'
+import {useNavigate} from 'react-router-dom'
+import DSIconButton from '../design-system/DSIconButton'
+import DSIcon from '../design-system/icons/DSIcon'
 import Tabs from '../Tabs'
 import styles from './styles.module.css'
-import DSIconButton from '../design-system/DSIconButton'
-import {Button} from '@mui/material'
-import DSIcon from '../design-system/icons/DSIcon'
-import classNames from 'classnames'
 
 type THeaderProps = {
   numItemsInBag?: number
+  page: 'discover' | 'favorites' | 'brands' | 'categories'
 }
 
-const Header = ({numItemsInBag}: THeaderProps) => {
+const pageToTabIndex = (
+  page: 'discover' | 'favorites' | 'brands' | 'categories'
+): number => {
+  switch (page) {
+    case 'discover':
+      return 0
+    case 'favorites':
+      return 1
+    case 'brands':
+      return 2
+    case 'categories':
+      return 3
+    default:
+      // todo: implement safe unreachable case
+      return 0
+  }
+}
+
+const tabIndexToPage = (tabIndex: number) => {
+  switch (tabIndex) {
+    case 0:
+      return 'discover'
+    case 1:
+      return 'favorites'
+    case 2:
+      return 'brands'
+    case 3:
+      return 'categories'
+    default:
+      // todo: implement safe unreachable case
+      return 'discover'
+  }
+}
+
+const Header = ({numItemsInBag, page}: THeaderProps) => {
+  console.log('rerendering header', page, pageToTabIndex(page))
+  const navigate = useNavigate()
   return (
     <div className={styles.header}>
       <DSIconButton icon='Home' variant='primary' />
-      <Tabs onChange={() => {}} />
+      <Tabs
+        activeTabIndex={pageToTabIndex(page)}
+        onChange={(_event, newTabIndex) => {
+          console.log(newTabIndex)
+          navigate(`/marketplace/${tabIndexToPage(newTabIndex)}`)
+        }}
+      />
       <div
         className={classNames(
           styles.endSection,

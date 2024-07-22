@@ -1,17 +1,17 @@
+import {dirname, join} from 'path'
+import {fileURLToPath} from 'url'
 import cookieParser from 'cookie-parser'
 import cors from 'cors'
 import express, {static as expressStatic, json, urlencoded} from 'express'
+import helmet from 'helmet'
 import createError from 'http-errors'
 import logger from 'morgan'
-import {dirname, join} from 'path'
-import {fileURLToPath} from 'url'
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = dirname(__filename)
+const filename = fileURLToPath(import.meta.url)
+const dir = dirname(filename)
 
-import helmet from 'helmet'
 import indexRouter from './routes/index.js'
-// var usersRouter = require('./routes/users');
+import marketplaceRouter from './routes/marketplace.tsx'
 
 const app = express()
 // Use Helmet to set CSP headers
@@ -63,9 +63,10 @@ app.use(json())
 app.use(urlencoded({extended: false}))
 app.use(cookieParser())
 app.use(cors())
-app.use(expressStatic(join(__dirname, 'public')))
-
+app.use(expressStatic(join(dir, 'public')))
+console.log('fooo', join(dir, 'public'))
 app.use('/', indexRouter)
+app.use('/marketplace', marketplaceRouter)
 // app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler

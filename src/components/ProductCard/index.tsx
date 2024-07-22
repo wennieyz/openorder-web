@@ -14,6 +14,8 @@ export type TProductCardProps = {
   minQuantity: string
   variants?: string[]
   iconTags?: string[]
+  productId: string
+  leadTime: string
 }
 
 const ProductCard = ({
@@ -29,7 +31,7 @@ const ProductCard = ({
 }: TProductCardProps) => {
   return (
     <div className={styles.productCard}>
-      <img src={imgUrl} alt='product' className={styles.img} />
+      <img src={imgUrl} alt={productTitle} />
       <div className={styles.brandAndIconsSection}>
         <Typography
           fontWeight={500}

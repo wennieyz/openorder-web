@@ -340,7 +340,7 @@ const eslintConfig = {
     ],
     'no-trailing-spaces': 'off',
     'no-unused-labels': 'error',
-    'radix': 'error',
+    'radix': 0,
     'react/display-name': 'off',
     'react/jsx-boolean-value': 'off',
     'react/jsx-curly-brace-presence': ['error', 'never'],

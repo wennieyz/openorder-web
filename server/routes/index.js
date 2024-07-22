@@ -43,7 +43,7 @@ const suppliers = [
   {value: 'alphabroder', name: 'Alphabroder'},
 ]
 
-const apiBaseUrl = `https://api.dc-onesource.com/json/`
+const apiBaseUrl = 'https://api.dc-onesource.com/json/'
 
 const fetchProductDetails = async (supplierName, productId) => {
   const url = `${apiBaseUrl}${supplierName}/ps/product/getProduct/${productId}`

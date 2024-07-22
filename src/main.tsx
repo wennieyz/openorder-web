@@ -1,7 +1,7 @@
 import {StyledEngineProvider, ThemeProvider} from '@mui/material/styles'
 import React from 'react'
 import * as ReactDOM from 'react-dom/client'
-import {RouterProvider, createBrowserRouter} from 'react-router-dom'
+import {createBrowserRouter, redirect, RouterProvider} from 'react-router-dom'
 import App from './App.tsx'
 import './index.css'
 import Marketplace from './pages/Marketplace/index.tsx'
@@ -14,8 +14,18 @@ const router = createBrowserRouter([
     errorElement: <div>Error! TODO: create an error component</div>,
   },
   {
-    path: '/marketplace',
+    path: '/marketplace/:page?',
     element: <Marketplace />,
+    loader: ({params}) => {
+      if (!params.page) {
+        console.log('foo')
+        return redirect('/marketplace/discover')
+      }
+
+      console.log('page param', params.page)
+      return null
+      // return fetchTeam(params.page)
+    },
     errorElement: <div>Error! TODO: create an error component</div>,
   },
 ])

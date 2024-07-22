@@ -25,20 +25,18 @@ const StyledTab = styled(Tab)<TabProps>(({theme}) => ({
 
 type TTabsProps = {
   onChange: (event: React.SyntheticEvent, newValue: number) => void
+  activeTabIndex?: number
 }
 
 const Tabs = (props: TTabsProps) => {
-  const [value, setValue] = React.useState(0)
-
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-    console.log(event, newValue)
-    setValue(newValue)
+    props.onChange(event, newValue)
   }
 
   return (
     <Box>
       <MuiTabs
-        value={value}
+        value={props.activeTabIndex}
         onChange={handleChange}
         TabIndicatorProps={{
           style: {

@@ -3,12 +3,6 @@
   flex-direction: column;
   justify-content: center;
   gap: 8px;
-  width: 320px;
-}
-
-.img {
-  height: 320px;
-  width: 320px;
 }
 
 .brandAndIconsSection {
