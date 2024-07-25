@@ -103,18 +103,18 @@ const DSDropdown = ({
                   'boxShadow': 'none',
                   '.MuiOutlinedInput-notchedOutline': {border: 0},
                   '&.MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
-                    border: `2px solid ${baseColors['--blue-80']}`,
+                    border: `1px solid ${baseColors['--blue-80']}`,
                   },
                   '&.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline':
                     {
-                      border: `2px solid ${baseColors['--blue-80']}`,
+                      border: `1px solid ${baseColors['--blue-80']}`,
                       boxShadow: `0px 0px 8px 0px ${baseColors['--blue-80']}`,
                     },
                 }
               : {
                   '&.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline':
                     {
-                      border: '2px solid error.main',
+                      border: '1px solid error.main',
                     },
                 }),
             ...(value
