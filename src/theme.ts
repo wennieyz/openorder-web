@@ -392,13 +392,6 @@ const theme = createTheme({
         },
       },
     },
-    MuiSelect: {
-      styleOverrides: {
-        root: {
-          borderRadius: '100px',
-        },
-      },
-    },
     MuiSvgIcon: {
       styleOverrides: {
         root: ({ownerState}) => ({

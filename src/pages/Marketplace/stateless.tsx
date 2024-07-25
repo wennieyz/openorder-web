@@ -43,7 +43,11 @@ const MarketplacePage = (props: TProps) => {
               /* TODO: need to fill this out */
             }}
             title='Lead time'
-            options={[{label: 'Less than 24', value: 'Less than 24'}]}
+            options={[
+              {label: 'Less than 24', value: 'Less than 24'},
+              {label: '1 day', value: '1 day'},
+              {label: '2 days', value: '2 days'},
+            ]}
             value='Less than 24'
           />
           <DSDropdown

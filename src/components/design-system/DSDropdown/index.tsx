@@ -1,3 +1,4 @@
+import {ExpandMoreRounded} from '@mui/icons-material'
 import {
   FormControl,
   FormHelperText,
@@ -95,6 +96,7 @@ const DSDropdown = ({
           </FormHelperText>
         )}
         <Select
+          IconComponent={ExpandMoreRounded}
           value={value}
           sx={{
             ...(!error
@@ -103,25 +105,35 @@ const DSDropdown = ({
                   'boxShadow': 'none',
                   '.MuiOutlinedInput-notchedOutline': {border: 0},
                   '&.MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
-                    border: `1px solid ${baseColors['--blue-80']}`,
+                    border: `2px solid ${baseColors['--blue-80']}`,
                   },
                   '&.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline':
                     {
-                      border: `1px solid ${baseColors['--blue-80']}`,
+                      border: `2px solid ${baseColors['--blue-80']}`,
                       boxShadow: `0px 0px 8px 0px ${baseColors['--blue-80']}`,
                     },
                 }
               : {
                   '&.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline':
                     {
-                      border: '1px solid error.main',
+                      border: '2px solid error.main',
                     },
                 }),
-            ...(value
-              ? {color: 'primary.main'}
-              : {color: `${baseColors['--gray-50']}`}),
+                ...(value
+                  ? {color: 'primary.main'}
+                  : {color: `${baseColors['--gray-50']}`}),
+            '.MuiSelect-icon': {
+              color: 'secondary.main',
+              // hack for making ExpandMoreRounded icon appear light
+              stroke: `${baseColors['--blue-10']}`,
+            },
+          '.MuiSelect-select': {
+            padding: '9px 34px 9px 16px',
+          },
+            
             fontSize: '13px',
-            height: '40px',
+            height: '36px',
+            borderRadius: '100px',
           }}
           onChange={(event: SelectChangeEvent) => onChange(event.target.value)}
           displayEmpty
@@ -129,7 +141,7 @@ const DSDropdown = ({
           renderValue={v => (v === '' ? title : optionValueToLabel[v])}
           MenuProps={{
             anchorOrigin: {
-              vertical: 'bottom',
+              vertical: 40,
               horizontal: 'left',
             },
             transformOrigin: {

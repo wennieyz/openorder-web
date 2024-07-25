@@ -1,6 +1,6 @@
 import {SvgIcon} from '@mui/material'
-import icon, {IconName, TIconStyleProps} from './allIcons'
 import {baseColors} from '../../../styleVariables'
+import icon, {IconName, TIconStyleProps} from './allIcons'
 
 type TDSIconProps = {
   name: IconName
