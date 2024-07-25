@@ -1,4 +1,4 @@
-import {StoryObj} from '@storybook/react'
+import {StoryFn, StoryObj} from '@storybook/react'
 import ProductCard from '.'
 
 const meta = {
@@ -10,10 +10,10 @@ const meta = {
   },
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ['autodocs'],
-  args: {imgUrl: 'src/assets/productImages/duck-bag.png'},
+  args: {imgUrl: '/productImages/duck-bag.png'},
   decorators: [
-    (Story: any) => (
-      <div style={{width: '800px', height: '100%'}}>
+    (Story: StoryFn) => (
+      <div style={{width: '300px', height: '100%'}}>
         <Story />
       </div>
     ),
@@ -25,6 +25,8 @@ type Story = StoryObj<typeof meta>
 
 const Default: Story = {
   args: {
+    productId: '1',
+    leadTime: '7-10 days',
     productTitle: 'Duck Bag',
     brandName: 'Baggu',
     price: 12.5,
