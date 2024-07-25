@@ -7,7 +7,7 @@
 .headerSection {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 16px;
+  margin: 24px 0 16px;
 }
 
 .dropdowns {
