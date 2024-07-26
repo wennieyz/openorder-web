@@ -10,7 +10,6 @@ const mockDuckBag = {
   processingTime: '1-2 days',
   variants: ['Yellow', 'Blue', 'Green'],
   iconTags: ['Globe', 'Recycle', 'Leaf'],
-  leadTime: '1-2 days',
 }
 
 const mockYeti = {
@@ -24,7 +23,6 @@ const mockYeti = {
   processingTime: '1-2 days',
   variants: ['Yellow', 'Blue', 'Green'],
   iconTags: ['Globe', 'Recycle', 'Leaf'],
-  leadTime: '1-2 days',
 }
 
 export const mockMarketplaceDiscoverData: TProductCardProps[] = [

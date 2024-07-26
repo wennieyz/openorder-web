@@ -15,7 +15,6 @@ export type TProductCardProps = {
   variants?: string[]
   iconTags?: string[]
   productId: string
-  leadTime: string
 }
 
 const ProductCard = ({

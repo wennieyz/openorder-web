@@ -26,7 +26,6 @@ type Story = StoryObj<typeof meta>
 const Default: Story = {
   args: {
     productId: '1',
-    leadTime: '7-10 days',
     productTitle: 'Duck Bag',
     brandName: 'Baggu',
     price: 12.5,
