@@ -18,33 +18,30 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-// 👇 Throws a type error it the args don't match the component props
-const Primary: Story = {
+export const Primary: Story = {
   args: {
     children: 'Button',
   },
 }
 
-const Secondary: Story = {
+export const Secondary: Story = {
   args: {
     children: 'Button',
     color: 'secondary',
   },
 }
 
-const PrimaryWithIcon: Story = {
+export const PrimaryWithIcon: Story = {
   args: {
     children: 'Button',
     startIcon: <CheckIcon />,
   },
 }
 
-const SecondaryWithIcon: Story = {
+export const SecondaryWithIcon: Story = {
   args: {
     children: 'Button',
     color: 'secondary',
     startIcon: <CheckIcon />,
   },
 }
-
-export {Primary, PrimaryWithIcon, Secondary, SecondaryWithIcon}

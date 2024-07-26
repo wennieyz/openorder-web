@@ -1,15 +1,7 @@
-import {useEffect, useState} from 'react'
 import './App.css'
 import viteLogo from '/vite.svg'
 
 function App() {
-  const [count, setCount] = useState(0)
-  useEffect(() => {
-    fetch('http://localhost:3000/hello')
-      .then(res => res.json())
-      .then(data => console.log(data))
-  }, [])
-
   return (
     <>
       <div>
@@ -19,7 +11,6 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className='card'>
-        <button onClick={() => setCount(c => c + 1)}>count is {count}</button>
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>

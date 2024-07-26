@@ -17,56 +17,56 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 // 👇 Throws a type error it the args don't match the component props
-const Gray: Story = {
+export const Gray: Story = {
   name: 'Gray (Default)',
   args: {
     text: 'Badge',
   },
 }
 
-const Blue: Story = {
+export const Blue: Story = {
   args: {
     color: 'blue',
     text: 'Badge',
   },
 }
 
-const Red: Story = {
+export const Red: Story = {
   args: {
     color: 'red',
     text: 'Badge',
   },
 }
 
-const Green: Story = {
+export const Green: Story = {
   args: {
     color: 'green',
     text: 'Badge',
   },
 }
 
-const Yellow: Story = {
+export const Yellow: Story = {
   args: {
     color: 'yellow',
     text: 'Badge',
   },
 }
 
-const Purple: Story = {
+export const Purple: Story = {
   args: {
     color: 'purple',
     text: 'Badge',
   },
 }
 
-const White: Story = {
+export const White: Story = {
   args: {
     color: 'white',
     text: 'Badge',
   },
 }
 
-const WithIcon: Story = {
+export const WithIcon: Story = {
   name: 'With Icon',
   args: {
     text: 'Badge',
@@ -75,5 +75,3 @@ const WithIcon: Story = {
     color: 'white',
   },
 }
-
-export {Blue, Gray, Green, Purple, Red, White, WithIcon, Yellow}

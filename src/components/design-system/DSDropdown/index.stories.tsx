@@ -44,14 +44,14 @@ const options = [
 ]
 
 // 👇 Throws a type error it the args don't match the component props
-const Default = Template.bind({})
+export const Default = Template.bind({})
 Default.args = {
   error: false,
   options,
   title: 'Ages',
 }
 
-const Error = Template.bind({})
+export const Error = Template.bind({})
 Error.args = {
   error: true,
   errorMessage: 'This is an error message',
@@ -59,7 +59,7 @@ Error.args = {
   title: 'Ages',
 }
 
-const Disabled = Template.bind({})
+export const Disabled = Template.bind({})
 Disabled.args = {
   error: false,
   disabled: true,
@@ -67,7 +67,7 @@ Disabled.args = {
   title: 'Ages',
 }
 
-const WithHelperText = Template.bind({})
+export const WithHelperText = Template.bind({})
 WithHelperText.args = {
   error: false,
   value: 'Less than 24',
@@ -81,5 +81,3 @@ WithHelperText.args = {
     {value: 'More than 50', label: 'More than 50'},
   ],
 }
-
-export {Default, Disabled, Error, WithHelperText}

@@ -18,7 +18,6 @@ const router = createBrowserRouter([
     element: <Marketplace />,
     loader: ({params}) => {
       if (!params.page) {
-        console.log('foo')
         return redirect('/marketplace/discover')
       }
 

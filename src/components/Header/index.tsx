@@ -46,7 +46,6 @@ const tabIndexToPage = (tabIndex: number) => {
 }
 
 const Header = ({numItemsInBag, page}: THeaderProps) => {
-  console.log('rerendering header', page, pageToTabIndex(page))
   const navigate = useNavigate()
   return (
     <div className={styles.header}>
