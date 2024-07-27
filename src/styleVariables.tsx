@@ -27,7 +27,7 @@ const baseColors = {
   '--gray-40': '#ACB7BE',
   '--gray-30': '#CDD7DA',
   '--gray-20': '#DDE5E7',
-  '--gray-10': '#F5F7F8',
+  '--gray-10': '#EDF3F5',
 
   /* Green */
   '--green-100': '#026049',
