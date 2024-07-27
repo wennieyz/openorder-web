@@ -1,21 +1,10 @@
 import {ExpandMoreRounded} from '@mui/icons-material'
-import {
-  FormControl,
-  FormHelperText,
-  MenuItem,
-  MenuItemProps,
-  Select,
-  SelectChangeEvent,
-  styled,
-} from '@mui/material'
+import {FormControl, FormHelperText, SelectChangeEvent} from '@mui/material'
 import React from 'react'
-import {baseColors} from '../../../styleVariables'
-
-const StyledMenuItem = styled(MenuItem)<MenuItemProps>(({theme}) => ({
-  fontSize: '13px',
-  color: theme.palette.primary.main,
-  minHeight: 'initial',
-}))
+import StyledSelect, {
+  StyledInputForSelect,
+  StyledMenuItem,
+} from './Subcomponents/Select'
 
 type TDSDropdownOption = {
   disabled?: boolean
@@ -95,51 +84,25 @@ const DSDropdown = ({
             {helperText}
           </FormHelperText>
         )}
-        <Select
+        <StyledSelect
+          input={<StyledInputForSelect />}
           IconComponent={ExpandMoreRounded}
           value={value}
-          sx={{
-            ...(!error
-              ? {
-                  'background': `${baseColors['--blue-10']}`,
-                  'boxShadow': 'none',
-                  '.MuiOutlinedInput-notchedOutline': {border: 0},
-                  '&.MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
-                    border: `2px solid ${baseColors['--blue-80']}`,
-                  },
-                  '&.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline':
-                    {
-                      border: `2px solid ${baseColors['--blue-80']}`,
-                      boxShadow: `0px 0px 8px 0px ${baseColors['--blue-80']}`,
-                    },
-                }
-              : {
-                  '&.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline':
-                    {
-                      border: '2px solid error.main',
-                    },
-                }),
-                ...(value
-                  ? {color: 'primary.main'}
-                  : {color: `${baseColors['--gray-50']}`}),
-            '.MuiSelect-icon': {
-              color: 'secondary.main',
-              // hack for making ExpandMoreRounded icon appear light
-              stroke: `${baseColors['--blue-10']}`,
-            },
-          '.MuiSelect-select': {
-            padding: '9px 34px 9px 16px',
-          },
-            
-            fontSize: '13px',
-            height: '36px',
-            borderRadius: '100px',
-          }}
           onChange={(event: SelectChangeEvent) => onChange(event.target.value)}
           displayEmpty
           inputProps={{'aria-label': 'Without label'}}
           renderValue={v => (v === '' ? title : optionValueToLabel[v])}
           MenuProps={{
+            slotProps: {
+              paper: {
+                sx: {
+                  padding: '4px',
+                  '& .MuiList-root.MuiMenu-list': {
+                    padding: 0,
+                  },
+                },
+              },
+            },
             anchorOrigin: {
               vertical: 40,
               horizontal: 'left',
@@ -159,7 +122,7 @@ const DSDropdown = ({
               {option.label}
             </StyledMenuItem>
           ))}
-        </Select>
+        </StyledSelect>
         <FormHelperText sx={{marginLeft: '0', fontSize: '14px'}}>
           {errorMessage}
         </FormHelperText>
