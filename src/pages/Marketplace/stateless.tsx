@@ -81,7 +81,7 @@ const MarketplacePage = (props: TProps) => {
         </div>
       </div>
       {/* <div className={styles.products}> */}
-      <Grid container spacing={4}>
+      <Grid container spacing={3}>
         {props.products.map(product => (
           <Grid key={product.productId} item xs={3}>
             <ProductCard {...product} />

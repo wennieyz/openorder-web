@@ -28,8 +28,11 @@ const ProductCard = ({
   iconTags,
   variants,
 }: TProductCardProps) => {
+  const onCardClick = () => {
+    console.log('fooo')
+  }
   return (
-    <div className={styles.productCard}>
+    <div className={styles.productCard} onClick={onCardClick}>
       <img src={imgUrl} alt={productTitle} />
       <div className={styles.brandAndIconsSection}>
         <Typography
