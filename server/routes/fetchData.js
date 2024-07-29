@@ -1,8 +1,11 @@
 import axios from 'axios'
+import dotenv from 'dotenv'
 import suppliers from '../constants/suppliers.js'
 
-const Authorization =
-  '808171EC-709C-46C6-9DF3-89E7B9D03525|CE2RQDK-MG8MYJ3-KCMB7PX-MWMYDB7'
+dotenv.config()
+
+const Authorization = process.env.ONESOURCE_API_KEY
+
 const options = {
   method: 'GET',
   headers: {
@@ -28,11 +31,7 @@ const retryWithBackoff = async (fn, retries = 3, delay = 1000) => {
 const fetchEachSupplierSellableProducts = async supplier => {
   try {
     const sellableUrl = `${apiBaseUrl}${supplier.value}/ps/product/getProductSellable`
-    // const response = await axios.get(sellableUrl, options)
     const response = await retryWithBackoff(() => axios.get(sellableUrl, options))
-
-    // console.log('line 105 : ' + response.data.data.ProductSellableArray);
-    // const products = response.data.data.ProductSellableArray
 
     if (!response.data || !response.data.data) {
       console.error(`No data found for supplier ${supplier.name}`)
@@ -133,7 +132,7 @@ const fetchProductInfos = async (supplierName, productId, partIds) => {
         ? part.ColorArray.map(color => color.colorName).join('; ')
         : null,
     }))
-    console.log('partIds: ' + partIds)
+    // console.log('partIds: ' + partIds)
     // Filter partColorMap to only include specified partIds
     const filteredPartColorMap = partColorMap.filter(part =>
       partIds.includes(part.partId)
@@ -212,7 +211,7 @@ async function getAllProductData() {
       fetchEachSupplierSellableProducts(supplier)
     )
     const allProducts = await Promise.all(productDataPromises)
-    console.log(allProducts)
+    // console.log(allProducts)
     return allProducts
   } catch (error) {
     console.error('Error fetching product data:', error)
@@ -227,9 +226,10 @@ async function fetchMediaContent(supplierCode, productId) {
     throw new Error(`Failed to fetch media content: ${response.statusText}`)
   }
   const mediaContentResponse = response.json()
-  console.log('line 230 ' + mediaContentResponse)
+  // console.log('line 230 ' + mediaContentResponse)
 
   return mediaContentResponse
 }
+getAllProductData()
 
 export default {getAllProductData, fetchMediaContent, fetchProductInfos}

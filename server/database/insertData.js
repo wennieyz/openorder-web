@@ -1,6 +1,7 @@
 // database/insertData.js
 import DB from './database.js'
-import getAllProductData from '../routes/fetchData.js' // Ensure the correct relative path
+import fetchData from '../routes/fetchData.js' // Ensure the correct relative path
+const {getAllProductData} = fetchData
 
 // Truncate function to ensure the string length does not exceed the specified limit
 const truncate = (str, n) =>
