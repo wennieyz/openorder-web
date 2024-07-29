@@ -1,10 +1,11 @@
 import {Typography} from '@mui/material'
+import {Link} from 'react-router-dom'
 import {baseColors} from '@/styleVariables'
 import {CircleIcon} from '../design-system/icons/allIcons'
 import DSIcon from '../design-system/icons/DSIcon'
 import styles from './styles.module.css'
 
-export type TProductCardProps = {
+export type TProductData = {
   imgUrl: string
   productTitle: string
   brandName: string
@@ -17,22 +18,32 @@ export type TProductCardProps = {
   productId: string
 }
 
+type TProps = {
+  product: TProductData
+  onClick: () => void
+}
+
 const ProductCard = ({
-  brandName,
-  imgUrl,
-  productTitle,
-  price,
-  isPriceMin,
-  minQuantity,
-  processingTime,
-  iconTags,
-  variants,
-}: TProductCardProps) => {
-  const onCardClick = () => {
-    console.log('fooo')
-  }
+  product: {
+    brandName,
+    imgUrl,
+    productTitle,
+    price,
+    isPriceMin,
+    minQuantity,
+    processingTime,
+    iconTags,
+    variants,
+    productId,
+  },
+  onClick,
+}: TProps) => {
   return (
-    <div className={styles.productCard} onClick={onCardClick}>
+    <Link
+      className={styles.productCard}
+      to={`/product/${productId}`}
+      target='_blank'
+    >
       <img src={imgUrl} alt={productTitle} />
       <div className={styles.brandAndIconsSection}>
         <Typography
@@ -81,7 +92,7 @@ const ProductCard = ({
           />
         </div>
       )}
-    </div>
+    </Link>
   )
 }
 
