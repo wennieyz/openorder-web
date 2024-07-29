@@ -2,7 +2,6 @@
 <html>
 <head>
   <title>Product Detail</title>
-  <% include head %>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -30,15 +29,23 @@
   </style>
 </head>
 <body>
-  <% include navbar %>
   <div class="container">
     <div class="row">
       <div class="col-sm-8 col-sm-offset-2 text-center">
         <h1 class="single-product-title"><%= productInfo.name %></h1>
         <h3 class="single-product-title"><%= productInfo.brand %></h3>
         <img src="<%= productInfo.imageUrl %>" alt="Image of <%= productInfo.name %>" class="product-image" />
-        <p>Related: <%= productInfo.related %></p>
         <p>Description: <%= productInfo.description %></p>
+        <p>Available Colors:</p>
+        <ul>
+          <% if (productInfo.color) { %>
+            <% productInfo.color.split('; ').forEach(color => { %>
+              <li><%= color.split(': ')[1] %></li>
+            <% }) %>
+          <% } else { %>
+            <li>No colors available</li>
+          <% } %>
+        </ul>
         
         <!-- Media content section -->
         <div class="thumbnail-images">
