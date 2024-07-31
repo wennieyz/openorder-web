@@ -3,7 +3,7 @@ import classNames from 'classnames'
 import {useNavigate} from 'react-router-dom'
 import DSIconButton from '../design-system/DSIconButton'
 import DSIcon from '../design-system/icons/DSIcon'
-import Tabs from '../Tabs'
+import DSTabBar from '../DSTabBar'
 import styles from './styles.module.css'
 
 type THeaderProps = {
@@ -45,12 +45,15 @@ const tabIndexToPage = (tabIndex: number) => {
   }
 }
 
+const MARKETPLACE_TABS = ['Discover', 'Favorites', 'Brands', 'Categories']
+
 const Header = ({numItemsInBag, page}: THeaderProps) => {
   const navigate = useNavigate()
   return (
     <div className={styles.header}>
       <DSIconButton icon='Home' variant='primary' />
-      <Tabs
+      <DSTabBar
+        tabs={MARKETPLACE_TABS}
         activeTabIndex={pageToTabIndex(page)}
         onChange={(_event, newTabIndex) => {
           console.log(newTabIndex)

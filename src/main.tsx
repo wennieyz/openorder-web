@@ -5,7 +5,7 @@ import {createBrowserRouter, redirect, RouterProvider} from 'react-router-dom'
 import App from './App.tsx'
 import './index.css'
 import Marketplace from './pages/Marketplace/index.tsx'
-import ProductPage from './pages/Product/index.tsx'
+import Product from './pages/Product/index.tsx'
 import theme from './theme.ts'
 
 const router = createBrowserRouter([
@@ -30,7 +30,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/product/:productId',
-    element: <ProductPage />,
+    element: <Product />,
   },
 ])
 

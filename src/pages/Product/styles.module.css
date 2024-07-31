@@ -2,19 +2,6 @@
   width: 100%;
 }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0px 16px;
-  height: 64px;
-  /* todo: wennie fix this to use css var! blue-10*/
-  background-color: var(--blue-10);
-  color: var(--gray-90);
-  border-radius: 8px;
-  width: 100%;
-}
-
 .mainContent {
   padding: 16px;
 }
@@ -34,4 +21,20 @@
 .orderSpecsSection {
   display: flex;
   gap: 4px;
+}
+
+.orderFinalSection {
+  padding: 24px;
+  /* 100% of grid col width - 20px padding each side */
+  width: calc(100% - 48px);
+  border-radius: 8px;
+  background-color: var(--blue-10);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  & .finalOrderRow {
+    display: flex;
+    justify-content: space-between;
+  }
 }
