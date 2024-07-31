@@ -3,6 +3,14 @@
   flex-direction: column;
   justify-content: center;
   gap: 8px;
+  padding: 12px;
+  border-radius: 6px;
+
+  &:hover {
+    /*TODO: wennie fix this*/
+    background-color: var(--blue-10);
+    cursor: pointer;
+  }
 }
 
 .brandAndIconsSection {

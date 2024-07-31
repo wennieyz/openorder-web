@@ -7,14 +7,14 @@ import {baseColors} from '../../styleVariables'
 
 function a11yProps(index: number) {
   return {
-    'id': `simple-tab-${index}`,
+    id: `simple-tab-${index}`,
     'aria-controls': `simple-tabpanel-${index}`,
   }
 }
 
 const StyledTab = styled(Tab)<TabProps>(({theme}) => ({
-  'textTransform': 'none',
-  'fontWeight': '500',
+  textTransform: 'none',
+  fontWeight: '500',
   '&.MuiTab-root.MuiTab-textColorPrimary:hover': {
     color: theme.palette.gray[90],
   },
@@ -23,12 +23,13 @@ const StyledTab = styled(Tab)<TabProps>(({theme}) => ({
   },
 }))
 
-type TTabsProps = {
+type TDSTabBarProps = {
+  tabs: string[]
   onChange: (event: React.SyntheticEvent, newValue: number) => void
   activeTabIndex?: number
 }
 
-const Tabs = (props: TTabsProps) => {
+const DSTabBar = (props: TDSTabBarProps) => {
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     props.onChange(event, newValue)
   }
@@ -44,13 +45,12 @@ const Tabs = (props: TTabsProps) => {
           },
         }}
       >
-        <StyledTab label='Discover' {...a11yProps(0)} />
-        <StyledTab label='Favorites' {...a11yProps(1)} />
-        <StyledTab label='Brands' {...a11yProps(2)} />
-        <StyledTab label='Categories' {...a11yProps(3)} />
+        {props.tabs.map((tab, index) => (
+          <StyledTab key={tab} label={tab} {...a11yProps(index)} />
+        ))}
       </MuiTabs>
     </Box>
   )
 }
 
-export default Tabs
+export default DSTabBar

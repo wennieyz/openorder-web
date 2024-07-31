@@ -1,4 +1,4 @@
-import {TProductCardProps} from '@/components/ProductCard'
+import {TProductData} from '@/components/ProductCard'
 
 const mockDuckBag = {
   brandName: 'Baggu',
@@ -25,10 +25,10 @@ const mockYeti = {
   iconTags: ['Globe', 'Recycle', 'Leaf'],
 }
 
-export const mockMarketplaceDiscoverData: TProductCardProps[] = [
-  ...Array(9).keys(),
-].map(i => ({...mockDuckBag, productId: i.toString()}))
+export const mockMarketplaceDiscoverData: TProductData[] = [...Array(9).keys()].map(
+  i => ({...mockDuckBag, productId: i.toString()})
+)
 
-export const mockMarketplaceFavoritesData: TProductCardProps[] = [
-  ...Array(6).keys(),
-].map(i => ({...mockYeti, productId: i.toString()}))
+export const mockMarketplaceFavoritesData: TProductData[] = [...Array(6).keys()].map(
+  i => ({...mockYeti, productId: i.toString()})
+)
