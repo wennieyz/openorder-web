@@ -35,6 +35,9 @@ const resetDatabase = async () => {
       table.string('productId', 255).notNullable()
       table.string('partId', 1000).notNullable()
       table.string('color', 1000)
+      table.jsonb('pricing').nullable() // New column for pricing data
+      table.string('leadTime') // New column for leadTime
+
       table.unique(['supplier', 'productId', 'partId']) // Composite unique key
       table
         .foreign(['supplier', 'productId'])

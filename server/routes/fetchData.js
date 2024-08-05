@@ -126,10 +126,13 @@ const fetchProductInfos = async (supplierName, productId, partIds) => {
 
     // Extract all colors from ProductPartArray
     // Extract all colors from ProductPartArray with their corresponding partId
+
     const partColorMap = productParts.map(part => ({
       partId: part.partId.toString(),
       colors: part.ColorArray
-        ? part.ColorArray.map(color => color.colorName).join('; ')
+        ? part.ColorArray.map(color =>
+            color.colorName.replace(/\s*\(.*?\)/g, '')
+          ).join('; ')
         : null,
     }))
     // console.log('partIds: ' + partIds)
@@ -142,15 +145,40 @@ const fetchProductInfos = async (supplierName, productId, partIds) => {
       .map(part => `${part.partId}: ${part.colors}`)
       .join('; ')
 
+    // Extract lead times from ProductPartArray
+
+    // console.log('line 148: ' + JSON.stringify(productParts))
+    // Extract lead times from ProductPartArray
+    const leadTimeMap = productParts.map(part => ({
+      partId: part.partId.toString(),
+      leadTime: part.leadTime || null,
+    }))
+    // console.log('line153: ' + JSON.stringify(leadTimeMap))
+
+    // console.log('line 155: leadTime' + JSON.stringify(leadTimeMap))
     const categoryWords = productResponse.data.data.Product.ProductCategoryArray
-      ? productResponse.data.data.Product.ProductCategoryArray.map(cat => {
-          let categoryString = cat.category
-          if (cat.subCategory) {
-            categoryString += ` - ${cat.subCategory}`
-          }
-          return categoryString
+      ? productResponse.data.data.Product.ProductCategoryArray.flatMap(cat => {
+          // Create an array with category and subCategory if it exists
+          return cat.subCategory ? [cat.category, cat.subCategory] : [cat.category]
         }).join(', ')
       : null
+
+    // const leadTime = productResponse.data.data.Product.ProductPartArray[0].leadTime
+
+    // console.log(
+    //   'line 158: quant' +
+    //     productResponse.data.data.Product.ProductPartArray[0].ShippingPackageArray[0]
+    //       .quantity
+    // )
+    // const quantity =
+    //   productResponse.data.data.Product.ProductPartArray[0].ShippingPackageArray[0]
+    //     .quantity
+
+    const keyWordsString =
+      productResponse.data.data.Product.ProductKeywordArray?.map(
+        item => item.keyword
+      ).join(', ') || null
+    // console.log(keyWords)
     // console.log(categoryWords)
     // Combine part IDs with their image URLs
     // const partImages = mediaContents
@@ -172,6 +200,9 @@ const fetchProductInfos = async (supplierName, productId, partIds) => {
     //   Authorization
     // )
 
+    // use fob array[0] to store the price data: need to work on this
+    //const fobPoint = productResponse.data.data.Product.FobPointArray[0].fobid;
+
     return {
       productId: productId,
       partIds: partIds,
@@ -183,11 +214,10 @@ const fetchProductInfos = async (supplierName, productId, partIds) => {
       brand: productResponse.data.data.Product.productBrand || null,
       category: categoryWords,
       color: colorWithPartIds,
-      keyword:
-        JSON.stringify(productResponse.data.data.Product.ProductKeywordArray) ||
-        null,
+      keyword: keyWordsString,
       imageUrl: primaryImageUrl,
       effectiveDate: productResponse.data.data.Product.effectiveDate || null,
+      leadTimes: leadTimeMap || null,
     }
   } catch (error) {
     console.error(`Error fetching product details for ${productId}:`, error)
@@ -201,6 +231,8 @@ const fetchProductInfos = async (supplierName, productId, partIds) => {
       color: null,
       keyword: null,
       imageUrl: null,
+      effectiveDate: null,
+      leadTime: null,
     }
   }
 }
@@ -230,6 +262,96 @@ async function fetchMediaContent(supplierCode, productId) {
 
   return mediaContentResponse
 }
-getAllProductData()
 
-export default {getAllProductData, fetchMediaContent, fetchProductInfos}
+// get fob points:
+async function fetchFobPoints(supplierCode, productId) {
+  const fobPointUrl = `${apiBaseUrl}${supplierCode}/ps/ppc/getFobPoints/${productId}`
+  const response = await fetch(fobPointUrl, options)
+  if (!response.ok) {
+    throw new Error(`Failed to fetch fob point: ${response.statusText}`)
+  }
+  // Parse JSON response
+  const fobPointResponse = await response.json()
+  if (
+    !fobPointResponse.data ||
+    !Array.isArray(fobPointResponse.data.FobPointArray)
+  ) {
+    throw new Error('FobPointArray is missing or not an array' + supplierCode)
+  }
+  // console.log('Response JSON:', fobPointResponse)
+  // Extract fobIds from the response
+  const fobIds = fobPointResponse.data.FobPointArray.map(item => item.fobId)
+
+  // console.log('line 267, fobIds:', fobIds)
+  // Example:
+  // All FOB IDs with their price and config: {"100014-001":{"1":[{"minQuantity":100,"price":4.85},{"minQuantity":300,"price":4.58},
+  //{"minQuantity":600,"price":4.36},{"minQuantity":1000,"price":4.19}]},
+  //"100014-026":{"1":[{"minQuantity":100,"price":4.85},{"minQuantity":300,"price":4.58},{"minQuantity":600,"price":4.36},{"minQuantity":1000,"price":4.19}]},
+  //"100014-080":{"1":[{"minQuantity":100,"price":4.85},{"minQuantity":300,"price":4.58},{"minQuantity":600,"price":4.36},{"minQuantity":1000,"price":4.19}]},
+  //"100014-090":{"1":[{"minQuantity":100,"price":3.95}]},
+  //"100014-412":{"1":[{"minQuantity":100,"price":4.85},{"minQuantity":300,"price":4.58},{"minQuantity":600,"price":4.36},{"minQuantity":1000,"price":4.19}]},
+  ///"100014-461":{"1":[{"minQuantity":100,"price":2.37}]}}
+
+  return fobIds
+}
+
+// get price/minimum quantity
+async function getConfigurationAndPricing(supplierCode, productId) {
+  try {
+    const fobPoints = await fetchFobPoints(supplierCode, productId)
+    const results = {}
+
+    for (const fobId of fobPoints) {
+      const configAndPriceUrl = `${apiBaseUrl}${supplierCode}/ps/ppc/getConfigurationAndPricing/${productId}?fobId=${fobId}`
+
+      try {
+        const response = await axios.get(configAndPriceUrl, options)
+        const {data} = response.data
+
+        if (
+          data &&
+          data.Configuration &&
+          data.Configuration.PartArray &&
+          data.Configuration.PartArray.length > 0
+        ) {
+          data.Configuration.PartArray.forEach(part => {
+            if (!results[part.partId]) {
+              results[part.partId] = {}
+            }
+            if (!results[part.partId][fobId]) {
+              results[part.partId][fobId] = []
+            }
+            const pricing = part.PartPriceArray.map(price => ({
+              minQuantity: price.minQuantity,
+              price: price.price,
+            }))
+            results[part.partId][fobId] = pricing
+          })
+        } else {
+          results[fobId] = {
+            error: 'Invalid response structure or no parts found',
+          }
+        }
+      } catch (error) {
+        console.error(`Failed to fetch price and config for FOB ID ${fobId}:`, error)
+        results[fobId] = {error: error.message}
+      }
+    }
+
+    // console.log('All FOB IDs with their price and config:', JSON.stringify(results))
+    return results
+  } catch (error) {
+    console.error(`Error in fetching FOB points:`, error)
+    return {}
+  }
+}
+
+getAllProductData()
+// getConfigurationAndPricing('GEM', '100014')
+
+export default {
+  getAllProductData,
+  fetchMediaContent,
+  fetchProductInfos,
+  getConfigurationAndPricing,
+}

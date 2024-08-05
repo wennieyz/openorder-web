@@ -1,7 +1,7 @@
 // database/insertData.js
 import DB from './database.js'
 import fetchData from '../routes/fetchData.js' // Ensure the correct relative path
-const {getAllProductData} = fetchData
+const {getAllProductData, getConfigurationAndPricing} = fetchData
 
 // Truncate function to ensure the string length does not exceed the specified limit
 const truncate = (str, n) =>
@@ -24,13 +24,13 @@ const insertOrUpdateData = async () => {
             .insert({
               supplier: truncate(supplierData.supplier, 255),
               productId: product.productId,
-              partId: truncate(product.partIds.join(', '), 255),
-              name: truncate(product.name, 255),
+              partId: truncate(product.partIds.join(', '), 1000),
+              name: truncate(product.name, 1000),
               brand: truncate(product.brand, 255),
-              category: truncate(product.category, 255),
-              color: truncate(product.color, 255),
-              imageUrl: truncate(product.imageUrl, 255),
-              keyword: truncate(product.keyword, 255),
+              category: truncate(product.category, 1000),
+              color: truncate(product.color, 1000),
+              imageUrl: truncate(product.imageUrl, 1000),
+              keyword: truncate(product.keyword, 1000),
               effectiveDate: truncate(product.effectiveDate, 255),
             })
             .onConflict(['supplier', 'productId'])
@@ -49,12 +49,26 @@ const insertOrUpdateData = async () => {
                 return acc
               }, {})
 
+            //leadtime
+            const leadTimeMappings = product.leadTimes.reduce((acc, leadTimeObj) => {
+              acc[leadTimeObj.partId] = leadTimeObj.leadTime
+              return acc
+            }, {})
+
+            // Get pricing data for the product
+            const pricingData = await getConfigurationAndPricing(
+              supplierData.supplier,
+              product.productId
+            )
+
             partIds.forEach(partId => {
               productPartsToInsert.push({
                 supplier: truncate(supplierData.supplier, 255),
                 productId: product.productId,
-                partId,
+                partId: truncate(partId, 1000), // Ensure length limit
                 color: truncate(colorMappings[partId] || product.color, 255), // Use the parsed color or fallback to product color
+                pricing: JSON.stringify(pricingData[partId] || []), // Ensure length limit
+                leadTime: leadTimeMappings[partId] || null,
               })
             })
           }
