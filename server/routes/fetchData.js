@@ -45,29 +45,12 @@ const fetchEachSupplierSellableProducts = async supplier => {
       return {supplier: supplier.value, supplierName: supplier.name, products: []}
     }
 
-    // Randomly select 4 products
-    // const products = getRandomSubset(response.data.data.ProductSellableArray, 4)
-
-    // Select the first 4 products
-    // const products = response.data.data.ProductSellableArray.slice(0, 5)
-
-    // console.log(products)
-
-    // // Group products by productId and collect all partIds
-    // const productMap = products.reduce((map, product) => {
-    //   if (!map[product.productId]) {
-    //     map[product.productId] = []
-    //   }
-    //   map[product.productId].push(product.partId)
-    //   return map
-    // }, {})
-
     // Select the first 5 unique product IDs
     const uniqueProductIds = [
       ...new Set(response.data.data.ProductSellableArray.map(p => p.productId)),
     ]
-    const selectedProductIds = uniqueProductIds.slice(0, 6)
-    // const selectedProductIds = uniqueProductIds
+    // const selectedProductIds = uniqueProductIds.slice(0, 6)
+    const selectedProductIds = uniqueProductIds
     const productMap = selectedProductIds.reduce((map, productId) => {
       map[productId] = response.data.data.ProductSellableArray.filter(
         product => product.productId === productId
@@ -117,16 +100,6 @@ const fetchProductInfos = async (supplierName, productId, partIds) => {
     let primaryImageUrl = productResponse.data.data.Product.primaryImageUrl || null
     primaryImageUrl = await switchToLargeIfExists(primaryImageUrl)
 
-    // Fetch media content for each part ID
-    // const mediaContentPromises = productParts.map(part =>
-    //   fetchMediaContent(supplierName, productId, part.partId)
-    // )
-    // const mediaContents = await Promise.all(mediaContentPromises)
-    // console.log('line 204: ' + mediaContents)
-
-    // Extract all colors from ProductPartArray
-    // Extract all colors from ProductPartArray with their corresponding partId
-
     const partColorMap = productParts.map(part => ({
       partId: part.partId.toString(),
       colors: part.ColorArray
@@ -135,7 +108,7 @@ const fetchProductInfos = async (supplierName, productId, partIds) => {
           ).join('; ')
         : null,
     }))
-    // console.log('partIds: ' + partIds)
+
     // Filter partColorMap to only include specified partIds
     const filteredPartColorMap = partColorMap.filter(part =>
       partIds.includes(part.partId)
@@ -144,18 +117,12 @@ const fetchProductInfos = async (supplierName, productId, partIds) => {
     const colorWithPartIds = filteredPartColorMap
       .map(part => `${part.partId}: ${part.colors}`)
       .join('; ')
-
-    // Extract lead times from ProductPartArray
-
-    // console.log('line 148: ' + JSON.stringify(productParts))
     // Extract lead times from ProductPartArray
     const leadTimeMap = productParts.map(part => ({
       partId: part.partId.toString(),
       leadTime: part.leadTime || null,
     }))
-    // console.log('line153: ' + JSON.stringify(leadTimeMap))
 
-    // console.log('line 155: leadTime' + JSON.stringify(leadTimeMap))
     const categoryWords = productResponse.data.data.Product.ProductCategoryArray
       ? productResponse.data.data.Product.ProductCategoryArray.flatMap(cat => {
           // Create an array with category and subCategory if it exists
@@ -163,46 +130,14 @@ const fetchProductInfos = async (supplierName, productId, partIds) => {
         }).join(', ')
       : null
 
-    // const leadTime = productResponse.data.data.Product.ProductPartArray[0].leadTime
-
-    // console.log(
-    //   'line 158: quant' +
-    //     productResponse.data.data.Product.ProductPartArray[0].ShippingPackageArray[0]
-    //       .quantity
-    // )
-    // const quantity =
-    //   productResponse.data.data.Product.ProductPartArray[0].ShippingPackageArray[0]
-    //     .quantity
-
     const keyWordsString =
       productResponse.data.data.Product.ProductKeywordArray?.map(
         item => item.keyword
       ).join(', ') || null
-    // console.log(keyWords)
-    // console.log(categoryWords)
-    // Combine part IDs with their image URLs
-    // const partImages = mediaContents
-    //   .filter(content => content.length > 0)
-    //   .map(
-    //     (content, index) => `${productParts[index].partId}: ${content.join(', ')}`
-    //   )
 
-    // const productResponse = await axios.get(url, options)
-    // console.log('line 172   : ' + productResponse.data.data.Product.productName)
-    // console.log(
-    //   'line 174   :' + JSON.stringify(productResponse.data.data.Product.description)
-    // )
-    // Fetch media content for each product and part ID
-    // const mediaContent = await fetchMediaContent(
-    //   supplierName,
-    //   productId,
-    //   partId,
-    //   Authorization
-    // )
-
-    // use fob array[0] to store the price data: need to work on this
-    //const fobPoint = productResponse.data.data.Product.FobPointArray[0].fobid;
-
+    console.log(
+      'Name of the brand: ' + productResponse.data.data.Product.productName
+    )
     return {
       productId: productId,
       partIds: partIds,
@@ -258,7 +193,6 @@ async function fetchMediaContent(supplierCode, productId) {
     throw new Error(`Failed to fetch media content: ${response.statusText}`)
   }
   const mediaContentResponse = response.json()
-  // console.log('line 230 ' + mediaContentResponse)
 
   return mediaContentResponse
 }
@@ -278,19 +212,9 @@ async function fetchFobPoints(supplierCode, productId) {
   ) {
     throw new Error('FobPointArray is missing or not an array' + supplierCode)
   }
-  // console.log('Response JSON:', fobPointResponse)
+
   // Extract fobIds from the response
   const fobIds = fobPointResponse.data.FobPointArray.map(item => item.fobId)
-
-  // console.log('line 267, fobIds:', fobIds)
-  // Example:
-  // All FOB IDs with their price and config: {"100014-001":{"1":[{"minQuantity":100,"price":4.85},{"minQuantity":300,"price":4.58},
-  //{"minQuantity":600,"price":4.36},{"minQuantity":1000,"price":4.19}]},
-  //"100014-026":{"1":[{"minQuantity":100,"price":4.85},{"minQuantity":300,"price":4.58},{"minQuantity":600,"price":4.36},{"minQuantity":1000,"price":4.19}]},
-  //"100014-080":{"1":[{"minQuantity":100,"price":4.85},{"minQuantity":300,"price":4.58},{"minQuantity":600,"price":4.36},{"minQuantity":1000,"price":4.19}]},
-  //"100014-090":{"1":[{"minQuantity":100,"price":3.95}]},
-  //"100014-412":{"1":[{"minQuantity":100,"price":4.85},{"minQuantity":300,"price":4.58},{"minQuantity":600,"price":4.36},{"minQuantity":1000,"price":4.19}]},
-  ///"100014-461":{"1":[{"minQuantity":100,"price":2.37}]}}
 
   return fobIds
 }
