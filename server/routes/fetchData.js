@@ -135,9 +135,6 @@ const fetchProductInfos = async (supplierName, productId, partIds) => {
         item => item.keyword
       ).join(', ') || null
 
-    console.log(
-      'Name of the brand: ' + productResponse.data.data.Product.productName
-    )
     return {
       productId: productId,
       partIds: partIds,
@@ -270,7 +267,7 @@ async function getConfigurationAndPricing(supplierCode, productId) {
   }
 }
 
-getAllProductData()
+// getAllProductData()
 // getConfigurationAndPricing('GEM', '100014')
 
 export default {

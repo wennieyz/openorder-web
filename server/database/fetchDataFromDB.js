@@ -21,17 +21,21 @@ const fetchAllProductInfoFromDB = async (page, limit) => {
         const part = parts[0]
         let firstMinQuantity = 0
         let lastPrice = 0
-        // Ensuring the JSON is valid
-        let validJsonString = part.pricing
-        try {
-          const firstFobId = Object.keys(validJsonString)[0]
+        // get the price OBJ from the DB
+        let priceObj = part.pricing
+        // Get the first FOB ID from the pricing JSON object
+        if (Object.keys(priceObj) && Object.keys(priceObj).length > 0) {
+          const firstFobId = Object.keys(priceObj)
           if (firstFobId) {
-            const pricingArray = validJsonString[firstFobId]
+            // get the pricing array for the first FOB ID for each partId
+            const pricingArray = priceObj[firstFobId]
+            // get the minimum quantity from the first element's minQuantity(which is the highest price but has the minimum quantity)
             firstMinQuantity = pricingArray[0]?.minQuantity || 0
+            // get the lowest aviable price which is the last element's price in the price array(need higest quantity to order)
             lastPrice = pricingArray[pricingArray.length - 1]?.price || 0
           }
-        } catch (e) {
-          console.error('Invalid JSON in pricing field:', part.pricing)
+        } else {
+          console.error('No price array in pricing field:', priceObj)
         }
 
         const colors = product.color
@@ -45,13 +49,9 @@ const fetchAllProductInfoFromDB = async (page, limit) => {
           price: +lastPrice,
           isPriceMin: false,
           minQuantity: firstMinQuantity,
-          processingTime: '?',
           variants: colors,
-          // variants: ['Yellow', 'Blue', 'Green'],
-          // iconTags: product.keyword ? product.keyword.split(',') : [],
-          iconTags: product.category ? product.category.split(',') : [],
+          processingTime: part.leadTime,
           iconTags: ['Globe', 'Recycle', 'Leaf'],
-          leadTime: part.leadTime,
           productId: String(product.id),
         }
       }
@@ -59,9 +59,7 @@ const fetchAllProductInfoFromDB = async (page, limit) => {
       // Return a default structure if no parts are found?
     })
 
-    // Wait for all promises to resolve
-    const productInfos = await Promise.all(productInfoPromises)
-    return productInfos
+    return await Promise.all(productInfoPromises)
   } catch (error) {
     console.error('Error fetching products:', error)
     throw new Error('Internal Server Error')
