@@ -11,7 +11,8 @@
     "preview": "vite preview",
     "storybook": "storybook dev -p 6007",
     "build-storybook": "storybook build",
-    "format": "prettier --write && eslint --cache --fix"
+    "format": "prettier --write && eslint --cache --fix",
+    "prepare": "husky"
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx}": "eslint --cache --fix",

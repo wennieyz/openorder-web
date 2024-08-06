@@ -14,7 +14,7 @@ import indexRouter from './routes/index.js'
 import marketplaceRouter from './routes/marketplace.tsx'
 
 const app = express()
-// Use Helmet to set CSP header
+// Use Helmet to set CSP headers
 app.use(
   helmet({
     contentSecurityPolicy: {
