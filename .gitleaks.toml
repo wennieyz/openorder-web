@@ -1,0 +1,35 @@
+title = "default gitleaks config"
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "global allow list"
+paths = [
+  '\.gitleaks\.toml',
+  'node_modules',
+  '\.envrc',
+  'src/publicKeys\.tsx',
+  'src/api/Upload/Invoices/mockResponse\.ts',
+  'src/utils/encrypt\.test\.ts',
+]
+regexes = [
+  # Ignore UUIDs
+  '\w{8}-\w{4}-\w{4}-\w{4}-\w{12}',
+]
+stopwords = [
+  'REACT_APP_GOOGLE_OAUTH_2_CLIENT_ID',
+  'npm.fontawesome.com',
+  'GrantOrgSynapseCip14',
+  'RevokeOrgSynapseCip14'
+]
+
+# Overriding an overzealous rule in the defaults from gitleaks wrt Finicity by adding `entropy = 4`
+# otherwise their default rule was triggering on some of our generated types files
+[[rules]]
+description = "Finicity Client Secret"
+id = "finicity-client-secret"
+regex = '''(?i)(?:finicity)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{20})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+secretGroup = 1
+entropy = 4
+keywords = ["finicity"]

@@ -1,1 +1,18 @@
-yarn lint-staged
+# git rev-parse -q --no-revs --verify MERGE_HEAD => prevents lint-staged when doing a merge commit
+# yarn lint-staged => runs lint-staged on staged files in the repo
+# --relative => pass relative filepath instead of full path using process.cwd()
+# --allow-empty => allow empty commits
+git rev-parse -q --no-revs --verify MERGE_HEAD || yarn lint-staged --relative --allow-empty
+
+# gitleaks checks for secrets before they are committed/leaked
+if ! command -v gitleaks >/dev/null; then
+  echo '🔑 gitleaks is not installed, but is required as a pre-commit check'
+  if command -v brew >/dev/null; then
+    echo '☕️ You can install gitleaks by running "brew install gitleaks"'
+  else
+    echo '🔗 Visit https://github.com/zricethezav/gitleaks#installing for instructions on installing gitleaks'
+  fi
+  exit 1
+else
+  gitleaks protect --config .gitleaks.toml --verbose --no-banner --redact --staged --log-level warn
+fi

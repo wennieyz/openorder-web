@@ -13,6 +13,10 @@
     "build-storybook": "storybook build",
     "format": "prettier --write && eslint --cache --fix"
   },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx}": "eslint --cache --fix",
+    "*.{ts,tsx,js,jsx,html,css}": "prettier --write"
+  },
   "dependencies": {
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
@@ -148,9 +152,5 @@
     "sb": "8.1.6",
     "storybook": "8.1.6",
     "jackspeak": "2.1.1"
-  },
-  "lint-staged": {
-    "*.{ts,tsx,js,jsx}": "eslint --cache --fix",
-    "*.{ts,tsx,js,jsx,html,css}": "prettier --write"
   }
 }
