@@ -5,6 +5,7 @@ import {createBrowserRouter, redirect, RouterProvider} from 'react-router-dom'
 import App from './App.tsx'
 import './index.css'
 import Marketplace from './pages/Marketplace/index.tsx'
+import Product from './pages/Product/index.tsx'
 import theme from './theme.ts'
 
 const router = createBrowserRouter([
@@ -18,7 +19,6 @@ const router = createBrowserRouter([
     element: <Marketplace />,
     loader: ({params}) => {
       if (!params.page) {
-        console.log('foo')
         return redirect('/marketplace/discover')
       }
 
@@ -27,6 +27,10 @@ const router = createBrowserRouter([
       // return fetchTeam(params.page)
     },
     errorElement: <div>Error! TODO: create an error component</div>,
+  },
+  {
+    path: '/product/:productId',
+    element: <Product />,
   },
 ])
 

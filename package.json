@@ -11,14 +11,19 @@
     "preview": "vite preview",
     "storybook": "storybook dev -p 6007",
     "build-storybook": "storybook build",
-    "format": "prettier --write && eslint --cache --fix"
+    "format": "prettier --write && eslint --cache --fix",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx}": "eslint --cache --fix",
+    "*.{ts,tsx,js,jsx,html,css}": "prettier --write"
   },
   "dependencies": {
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
     "@fontsource/roboto": "^5.0.13",
     "@mui/icons-material": "^5.15.19",
-    "@mui/material": "^5.15.19",
+    "@mui/material": "^5.16.4",
     "@mui/styles": "^5.15.19",
     "@types/debug": "^4.1.12",
     "axios": "^1.7.2",
@@ -35,7 +40,7 @@
     "eslint-plugin-react": "^7.34.3",
     "helmet": "^7.1.0",
     "knex": "^3.1.0",
-    "lint-staged": ">=10",
+    "lint-staged": "^15.2.8",
     "morgan": "^1.10.0",
     "pg": "^8.12.0",
     "prettier": "^3.3.3",
@@ -61,7 +66,7 @@
     "eslint": "^8.57.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
-    "husky": ">=6",
+    "husky": "^9.1.4",
     "storybook": "^8.1.6",
     "tsx": "^4.16.2",
     "typescript": "^5.2.2",
@@ -150,9 +155,5 @@
     "sb": "8.1.6",
     "storybook": "8.1.6",
     "jackspeak": "2.1.1"
-  },
-  "lint-staged": {
-    "*.{ts,tsx,js,jsx}": "eslint --cache --fix",
-    "*.{ts,tsx,js,jsx,html,css}": "prettier --write"
   }
 }

@@ -2,19 +2,17 @@ import {CircularProgress} from '@mui/material'
 import axios from 'axios'
 import {useEffect, useState} from 'react'
 import {useParams} from 'react-router-dom'
-import {TProductCardProps} from '@/components/ProductCard'
+import {TProductData} from '@/components/ProductCard'
 import MarketplacePage, {TMarketplacePages} from './stateless'
 
 const Marketplace = () => {
   const {page} = useParams<{page: TMarketplacePages}>()
-  const [products, setProducts] = useState<TProductCardProps[] | undefined>(
-    undefined
-  )
+  const [products, setProducts] = useState<TProductData[] | undefined>(undefined)
 
   useEffect(() => {
     axios
       .get<{
-        products: TProductCardProps[]
+        products: TProductData[]
       }>(`http://localhost:3000/marketplace/${page}`)
       .then(res => {
         setProducts(res.data.products)

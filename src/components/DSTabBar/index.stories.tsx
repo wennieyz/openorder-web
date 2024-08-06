@@ -3,7 +3,7 @@ import {fn} from '@storybook/test'
 import DSTabs from '.'
 
 const meta = {
-  title: 'Marketplace / Tabs',
+  title: 'Design System / Tab Bar',
   component: DSTabs,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout
@@ -17,5 +17,9 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-const Primary: Story = {}
+const Primary: Story = {
+  args: {
+    tabs: ['Discover', 'Favorites', 'Brands', 'Categories'],
+  },
+}
 export {Primary}

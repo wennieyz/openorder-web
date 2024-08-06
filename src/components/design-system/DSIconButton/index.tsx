@@ -1,7 +1,7 @@
 import {IconButton} from '@mui/material'
-import DSIcon from '../icons/DSIcon'
-import {IconName} from '../icons/allIcons'
 import {baseColors} from '../../../styleVariables'
+import {IconName} from '../icons/allIcons'
+import DSIcon from '../icons/DSIcon'
 
 type TDSIconButtonProps = {
   icon: IconName

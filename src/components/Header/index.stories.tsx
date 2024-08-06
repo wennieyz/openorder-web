@@ -1,4 +1,5 @@
-import {StoryObj} from '@storybook/react'
+import {StoryFn, StoryObj} from '@storybook/react'
+import { MemoryRouter } from 'react-router-dom'
 import Header from '.'
 
 const meta = {
@@ -12,10 +13,10 @@ const meta = {
   tags: ['autodocs'],
   // args: { onChange: fn() },
   decorators: [
-    (Story: any) => (
-      <div style={{width: '800px', height: '100%'}}>
-        <Story />
-      </div>
+    (Story: StoryFn) => (
+      <MemoryRouter>
+        <div style={{width: '800px'}}><Story /></div>
+      </MemoryRouter>
     ),
   ],
 }
@@ -23,15 +24,16 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-const Default: Story = {
+export const Default: Story = {
   args: {
     numItemsInBag: 0,
+    page: 'discover',
   },
 }
 
-const WithItemsInBag: Story = {
+export const WithItemsInBag: Story = {
   args: {
     numItemsInBag: 3,
+    page: 'discover',
   },
 }
-export {Default, WithItemsInBag}

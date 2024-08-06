@@ -1,7 +1,8 @@
 import {Button, Grid, Typography} from '@mui/material'
+import {useNavigate} from 'react-router-dom'
 import DSDropdown from '@/components/design-system/DSDropdown'
 import Header from '@/components/Header'
-import ProductCard, {TProductCardProps} from '@/components/ProductCard'
+import ProductCard, {TProductData} from '@/components/ProductCard'
 import {baseColors} from '@/styleVariables'
 import styles from './styles.module.css'
 
@@ -9,10 +10,12 @@ export type TMarketplacePages = 'discover' | 'favorites' | 'brands' | 'categorie
 
 type TProps = {
   page: TMarketplacePages // TODO: should probs make this a mapping/enum at some point
-  products: TProductCardProps[]
+  products: TProductData[]
 }
 
 const MarketplacePage = (props: TProps) => {
+  const navigate = useNavigate()
+
   return (
     <div>
       <Header page={props.page} />
@@ -43,7 +46,11 @@ const MarketplacePage = (props: TProps) => {
               /* TODO: need to fill this out */
             }}
             title='Lead time'
-            options={[{label: 'Less than 24', value: 'Less than 24'}]}
+            options={[
+              {label: 'Less than 24', value: 'Less than 24'},
+              {label: '1 day', value: '1 day'},
+              {label: '2 days', value: '2 days'},
+            ]}
             value='Less than 24'
           />
           <DSDropdown
@@ -77,10 +84,13 @@ const MarketplacePage = (props: TProps) => {
         </div>
       </div>
       {/* <div className={styles.products}> */}
-      <Grid container spacing={4}>
+      <Grid container spacing={3}>
         {props.products.map(product => (
           <Grid key={product.productId} item xs={3}>
-            <ProductCard {...product} />
+            <ProductCard
+              product={product}
+              onClick={() => navigate(`/product/${product.productId}`)}
+            />
           </Grid>
         ))}
       </Grid>

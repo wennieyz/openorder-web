@@ -5,12 +5,13 @@
   padding: 0px 16px;
   height: 64px;
   /* todo: wennie fix this to use css var! blue-10*/
-  background-color: #f6f9fc;
+  background-color: var(--blue-10);
   border-radius: 8px;
 }
 
 .endSection {
   display: flex;
+  gap: 8px;
 }
 
 .endSectionWithItems {
