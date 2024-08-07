@@ -22,18 +22,15 @@ const fetchAllProductInfoFromDB = async (page, limit) => {
         let firstMinQuantity = 0
         let lastPrice = 0
         // get the price OBJ from the DB
-        let priceObj = part.pricing
-        // Get the first FOB ID from the pricing JSON object
-        if (Object.keys(priceObj) && Object.keys(priceObj).length > 0) {
-          const firstFobId = Object.keys(priceObj)
-          if (firstFobId) {
-            // get the pricing array for the first FOB ID for each partId
-            const pricingArray = priceObj[firstFobId]
-            // get the minimum quantity from the first element's minQuantity(which is the highest price but has the minimum quantity)
-            firstMinQuantity = pricingArray[0]?.minQuantity || 0
-            // get the lowest aviable price which is the last element's price in the price array(need higest quantity to order)
-            lastPrice = pricingArray[pricingArray.length - 1]?.price || 0
-          }
+        const priceObj = part.pricing
+        const firstFobId = Object.keys(priceObj)[0]
+        if (firstFobId && firstFobId.length > 0) {
+          // get the pricing array for the first FOB ID for each partId
+          const pricingArray = priceObj[firstFobId]
+          // get the minimum quantity from the first element's minQuantity(which is the highest price but has the minimum quantity)
+          firstMinQuantity = pricingArray[0]?.minQuantity || 0
+          // get the lowest aviable price which is the last element's price in the price array(need higest quantity to order)
+          lastPrice = pricingArray[pricingArray.length - 1]?.price || 0
         } else {
           console.error('No price array in pricing field:', priceObj)
         }
