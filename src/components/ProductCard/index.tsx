@@ -1,7 +1,7 @@
 import {Typography} from '@mui/material'
 import {Link} from 'react-router-dom'
 import {baseColors} from '@/styleVariables'
-import {CircleIcon} from '../design-system/icons/allIcons'
+import {CircleIcon, IconName, IconNames} from '../design-system/icons/allIcons'
 import DSIcon from '../design-system/icons/DSIcon'
 import styles from './styles.module.css'
 
@@ -54,17 +54,20 @@ const ProductCard = ({
           textTransform='uppercase'
         />
         <div className={styles.icons}>
-          {iconTags?.map(tag => (
-            <DSIcon
-              key={tag}
-              name={tag}
-              color='secondary'
-              iconStyleProps={{
-                stroke: `${baseColors['--gray-60']}`,
-                strokeWidth: '1',
-              }}
-            />
-          ))}
+          {iconTags?.map(tag => {
+            return (
+              <DSIcon
+                key={tag}
+                // todo: wennie find a better workaround for this later
+                name={IconNames.includes(tag) ? (tag as IconName) : 'Home'}
+                color='secondary'
+                iconStyleProps={{
+                  stroke: `${baseColors['--gray-60']}`,
+                  strokeWidth: '1',
+                }}
+              />
+            )
+          })}
         </div>
       </div>
       <Typography variant='h3' fontWeight='bold' children={productTitle} />

@@ -10,7 +10,24 @@ const defaultProps = {
   strokeWidth: '1.5',
 }
 
-const allIcons: Record<string, (props: TIconStyleProps) => React.ReactElement> = {
+export const IconNames = [
+  'Home',
+  'MagnifyingGlass',
+  'ShoppingBag',
+  'Globe',
+  'Recycle',
+  'Leaf',
+]
+
+type TIconName =
+  | 'Home'
+  | 'MagnifyingGlass'
+  | 'ShoppingBag'
+  | 'Globe'
+  | 'Recycle'
+  | 'Leaf'
+
+const allIcons: Record<TIconName, (props: TIconStyleProps) => React.ReactElement> = {
   Home: ({stroke, strokeWidth}: TIconStyleProps) => (
     <svg
       xmlns='http://www.w3.org/2000/svg'
