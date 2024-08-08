@@ -12,7 +12,7 @@ on:
 jobs:
   prepare-node-modules:
     uses: ./.github/workflows/_prepare-node-modules.yml
-    # secrets: inherit
+    secrets: inherit
 
   test_job:
     runs-on: ubuntu-latest
