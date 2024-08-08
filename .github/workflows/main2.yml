@@ -3,11 +3,6 @@ name: pr
 on:
   pull_request:
     types: [opened, edited, reopened, synchronize]
-    paths: # make sure this action only runs when specific file extensions have been added/modified
-      - '**.js'
-      - '**.jsx'
-      - '**.ts'
-      - '**.tsx'
 
 jobs:
   prepare-node-modules:
