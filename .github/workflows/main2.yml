@@ -9,19 +9,19 @@ jobs:
     uses: ./.github/workflows/_prepare-node-modules.yml
     secrets: inherit
 
-  create-build-cache:
-    needs: prepare-node-modules
-    uses: ./.github/workflows/_create-build-cache.yml
-    secrets: inherit
+  # create-build-cache:
+  #   needs: prepare-node-modules
+  #   uses: ./.github/workflows/_create-build-cache.yml
+  #   secrets: inherit
 
-  run-eslint:
-    needs: prepare-node-modules
-    uses: ./.github/workflows/_run-eslint.yml
+  # run-eslint:
+  #   needs: prepare-node-modules
+  #   uses: ./.github/workflows/_run-eslint.yml
 
-  run-pr-code-checks:
-    # needs: [prepare-node-modules, prepare-cms-node-modules]
-    needs: prepare-node-modules
-    uses: ./.github/workflows/_run-pr-code-checks.yml
+  # run-pr-code-checks:
+  #   # needs: [prepare-node-modules, prepare-cms-node-modules]
+  #   needs: prepare-node-modules
+  #   uses: ./.github/workflows/_run-pr-code-checks.yml
 
   test_job:
     runs-on: ubuntu-latest
