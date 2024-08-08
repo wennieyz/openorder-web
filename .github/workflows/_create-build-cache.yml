@@ -5,9 +5,9 @@ on: workflow_call
 jobs:
   build:
     runs-on: ubuntu-latest
-    permissions:
-      id-token: write # Needed for AWS OIDC token federation
-      contents: read
+    # permissions:
+    #   id-token: write # Needed for AWS OIDC token federation
+    #   contents: read
     steps:
       # - uses: actions/checkout@v4
       # - name: Load Env Vars
