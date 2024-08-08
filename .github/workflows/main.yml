@@ -1,0 +1,77 @@
+name: pr
+
+on:
+  pull_request:
+    types: [opened, edited, reopened, synchronize]
+    paths:
+      - '**.js'
+      - '**.jsx'
+      - '**.ts'
+      - '**.tsx'
+
+jobs:
+  prepare-node-modules:
+    uses: ./.github/workflows/_prepare-node-modules.yml
+    secrets: inherit
+
+  # prepare-cms-node-modules:
+  #   uses: ./.github/workflows/_prepare-cms-node-modules.yml
+  #   secrets: inherit
+
+  create-build-cache:
+    needs: prepare-node-modules
+    uses: ./.github/workflows/_create-build-cache.yml
+    secrets: inherit
+
+  run-eslint:
+    needs: prepare-node-modules
+    uses: ./.github/workflows/_run-eslint.yml
+
+  run-pr-code-checks:
+    # needs: [prepare-node-modules, prepare-cms-node-modules]
+    needs: prepare-node-modules
+    uses: ./.github/workflows/_run-pr-code-checks.yml
+
+  test_job:
+    runs-on: ubuntu-latest
+    name: A job to test eslint-changeset action
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.1.7
+        with:
+          fetch-depth: 0
+          ref: ${{ github.head_ref }}
+      - run: |
+          git fetch --no-tags --depth=1 origin main
+          git checkout main
+          git checkout ${{ github.head_ref }}
+      - name: Eslint Changeset Step
+        uses: esrimo/gh-action-eslint-changeset@v1
+        id: eslint-changeset
+        with:
+          main-branch: 'main'
+          file-extension: 'js|jsx|ts|tsx'
+
+  # run-performance-checks:
+  #   needs: [prepare-node-modules, create-build-cache]
+  #   uses: ./.github/workflows/_run-performance-checks.yml
+
+  # run-gitleaks:
+  #   needs: prepare-node-modules
+  #   uses: ./.github/workflows/_run-gitleaks.yml
+
+  # run-unit-tests:
+  #   needs: prepare-node-modules
+  #   uses: ./.github/workflows/_run-unit-tests.yml
+
+  # run-functional-tests:
+  #   needs: [prepare-node-modules, create-build-cache]
+  #   uses: ./.github/workflows/_run-functional-tests.yml
+
+  # deploy-pr-preview:
+  #   uses: ./.github/workflows/_deploy-app-to-s3.yml
+  #   needs: [prepare-node-modules, create-build-cache]
+  #   secrets: inherit
+  #   with:
+  #     app-name: pr
+  #     env-names: base mock build s3-upload

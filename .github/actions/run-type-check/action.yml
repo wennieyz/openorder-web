@@ -1,0 +1,34 @@
+name: Run Type Check
+runs:
+  using: 'composite'
+  steps:
+    # - name: Configure AWS credentials
+    #   id: aws-creds
+    #   uses: aws-actions/configure-aws-credentials@v4
+    #   with:
+    #     aws-region: us-east-1
+    #     role-to-assume: arn:aws:iam::705762131802:role/github.com/MercuryTechnologies/mercury-web
+    #     output-credentials: true
+    # - name: Sanitize Head Ref
+    #   id: sanitize-head-ref
+    #   uses: ./.github/actions/sanitize-head-ref
+    # - name: Get Head SHA
+    #   id: get-head-sha
+    #   uses: ./.github/actions/get-head-sha
+    # - name: Restore TypeScript Cache
+    #   uses: runs-on/cache@v4
+    #   with:
+    #     path: build/dist/tsconfig.base.tsbuildinfo
+    #     key: tsc-buildinfo-mercury-v1-${{ runner.os }}-${{ steps.sanitize-head-ref.outputs.head-ref }}-${{ steps.get-head-sha.outputs.head-sha }}
+    #     restore-keys: |
+    #       tsc-buildinfo-mercury-v1-${{ runner.os }}-${{ steps.sanitize-head-ref.outputs.head-ref }}-
+    #       tsc-buildinfo-mercury-v1-${{ runner.os }}-master-
+    #   env:
+    #     RUNS_ON_S3_BUCKET_CACHE: mercury-technologies-gha-cache
+    #     AWS_ACCESS_KEY_ID: ${{ steps.aws-creds.outputs.aws-access-key-id }}
+    #     AWS_SECRET_ACCESS_KEY: ${{ steps.aws-creds.outputs.aws-secret-access-key }}
+    #     AWS_SESSION_TOKEN: ${{ steps.aws-creds.outputs.aws-session-token }}
+    #     AWS_REGION: us-east-1
+    - name: Run type check
+      run: yarn typecheck:include-tests
+      shell: bash

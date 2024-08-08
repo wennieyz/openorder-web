@@ -1,0 +1,11 @@
+name: Install Node Modules
+runs:
+  using: 'composite'
+  steps:
+    - name: Download the node_modules
+      uses: actions/download-artifact@v4
+      with:
+        name: node_modules
+    - name: Install Dependencies
+      run: /usr/bin/tar -xf node_modules.tzst -P --use-compress-program unzstd
+      shell: bash

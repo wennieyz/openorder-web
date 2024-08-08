@@ -1,0 +1,16 @@
+name: Get Head SHA
+
+description: This action gets the head SHA. If the event is a pull request, it gets the head SHA of the pull request. Otherwise, it gets the head SHA of the commit.
+
+outputs:
+  head-sha:
+    description: The SHA of the commit that triggered this workflow
+    value: ${{ steps.get-head-sha.outputs.head-sha }}
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Get Head SHA
+      id: get-head-sha
+      run: echo "head-sha=${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}" >> $GITHUB_OUTPUT
+      shell: bash

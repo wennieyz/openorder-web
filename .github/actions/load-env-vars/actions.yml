@@ -1,0 +1,13 @@
+# TODO: not using this rn but might be helpful later
+
+# name: Load Env Vars
+# inputs:
+#   env-names:
+#     default: 'base'
+# runs:
+#   using: 'composite'
+#   steps:
+#     - name: Append env vars to GitHub Actions environment file
+#       run: ../../.github/env-vars/make-env-vars.sh ${{ inputs.env-names }} | tee -a $GITHUB_ENV
+#       shell: bash
+#       working-directory: .circleci/env-vars

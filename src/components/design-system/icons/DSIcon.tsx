@@ -10,7 +10,7 @@ type TDSIconProps = {
 
 const DSIcon = ({color, name, iconStyleProps}: TDSIconProps) => {
   const iconProps = {
-    // stroke color needs to be defined here to override svg line color
+    // stroke color needs to be defined here to override svg line color!
     ...(color === 'primary' && {stroke: `${baseColors['--white']}`}),
     ...iconStyleProps,
   }

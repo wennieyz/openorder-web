@@ -1,0 +1,29 @@
+name: Create Build Cache
+
+on: workflow_call
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    # permissions:
+    #   id-token: write # Needed for AWS OIDC token federation
+    #   contents: read
+    steps:
+      # - uses: actions/checkout@v4
+      # - name: Load Env Vars
+      #   uses: ./.github/actions/load-env-vars
+      #   with:
+      #     env-names: 'base build'
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Install Dependencies
+        uses: ./.github/actions/install-node-modules
+      - name: Build
+        run: yarn build
+      # TODO: add slack integration later
+      # - name: Notify on master workflow failure
+      #   if: failure()
+      #   uses: ./.github/actions/notify-on-master-workflow-failure
+      #   with:
+      #     slack_token: ${{ secrets.CI_SLACK_TOKEN }}

@@ -1,0 +1,6 @@
+name: Run Type Tests
+runs:
+  using: 'composite'
+  steps:
+    - run: yarn test:types
+      shell: bash

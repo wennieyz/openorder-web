@@ -1,0 +1,16 @@
+name: Run ESLint
+
+on: workflow_call
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Install Dependencies
+        uses: ./.github/actions/install-node-modules
+      - name: Run ESLint
+        run: yarn lint:ci

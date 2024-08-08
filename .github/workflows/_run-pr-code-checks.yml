@@ -1,0 +1,30 @@
+name: Run PR Code Checks
+
+on: workflow_call
+
+jobs:
+  check-code:
+    runs-on: ubuntu-latest
+    # permissions:
+    #   id-token: write # Needed for AWS OIDC token federation
+    #   contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Install Dependencies
+        uses: ./.github/actions/install-node-modules
+      # - name: Install CMS Dependencies
+      #   uses: ./.github/actions/install-cms-node-modules
+      - name: Run Prettier
+        uses: ./.github/actions/run-prettier
+      - name: Run type check
+        uses: ./.github/actions/run-type-check
+      - name: Run type tests
+        uses: ./.github/actions/run-type-tests
+      # todo: may use stylelint later for css
+      # - name: Run Stylelint
+      #   uses: ./.github/actions/run-stylelint
+      - name: Run circular dependency check
+        uses: ./.github/actions/run-circular-dependency-check
