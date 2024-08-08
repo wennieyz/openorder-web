@@ -1,0 +1,7 @@
+name: Run Circular Dependency Check
+runs:
+  using: 'composite'
+  steps:
+    - run: |
+        echo "If you run into circular dependencies, fix them!"
+      shell: bash

@@ -1,0 +1,19 @@
+# TODO: not necessary now but may be useful later
+
+# name: Sanitize Head Ref
+
+# description: This action sanitizes the head ref by removing slashes so AWS doesn't create directories if the branch name has slashes
+
+# outputs:
+#   head-ref:
+#     description: The sanitized head ref
+#     value: ${{ steps.sanitize-head-ref.outputs.head-ref }}
+
+# runs:
+#   using: 'composite'
+#   steps:
+#     - name: Sanitize Head Ref
+#       id: sanitize-head-ref
+#       # head_ref only defined on pull_request events, fallback to ref_name on master
+#       run: echo "head-ref=$(echo ${{ github.head_ref || github.ref_name }} | tr -d '/')" >> $GITHUB_OUTPUT
+#       shell: bash

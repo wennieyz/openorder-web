@@ -1,0 +1,35 @@
+name: Prepare Node Modules
+
+on: workflow_call
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write # Needed for AWS OIDC token federation
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'yarn'
+      # todo: wennie don't think this is necessary yet
+      # - name: Cache Cypress Cache
+      #   uses: ./.github/actions/cache-cypress-cache
+      - name: Install
+        run: yarn install
+      - name: Compress node_modules
+        run: /usr/bin/tar --posix -cf node_modules.tzst --exclude node_modules.tzst --exclude node_modules/.cache -P --use-compress-program zstdmt node_modules
+      - name: Save node_modules
+        uses: actions/upload-artifact@v4
+        with:
+          name: node_modules
+          if-no-files-found: error
+          path: node_modules.tzst
+      # TODO: eventuallly add slack token
+      # - name: Notify on master workflow failure
+      #   if: failure()
+      #   uses: ./.github/actions/notify-on-master-workflow-failure
+      #   with:
+      #     slack_token: ${{ secrets.CI_SLACK_TOKEN }}
