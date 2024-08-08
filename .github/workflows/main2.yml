@@ -10,6 +10,10 @@ on:
       - '**.tsx'
 
 jobs:
+  prepare-node-modules:
+    uses: ./.github/workflows/_prepare-node-modules.yml
+    secrets: inherit
+
   test_job:
     runs-on: ubuntu-latest
     name: A job to test eslint-changeset action
